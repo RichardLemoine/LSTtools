@@ -291,9 +291,9 @@ emissivity <- function(x, nonveg = 0.2, veg = 0.5, enonveg = 0.95, eveg = 0.99, 
 }
 
 
-#' @title emissivity
+#' @title landsat_lst
 #'
-#' @description Compute land surface emissivity.
+#' @description Compute land surface temperature.
 #'
 #' @param x Brightness temperature layer.
 #' @param y Emissivity layer.
