@@ -293,6 +293,9 @@ space_time_trends <- function(x, space = NULL, time = NULL, stat = "mean", dist,
   if (!is.null(space)){
     x <- aggregate(x, fact = space, fun = stat)
   }
+  if (res(x)[1] > dist) {
+    stop("dist is less than spatial resolution after spatial aggregation")
+  }
   if (!is.null(time)){
     ind <- rep(1:nlayers(x), each = time)
     x <- suppressWarnings(stackApply(x, ind, fun = stat))
