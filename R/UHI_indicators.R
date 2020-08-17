@@ -281,7 +281,7 @@ getis <- function(x, dist = NULL, p = 0.05){
 #'
 #' @export
 #' @importFrom usdm lisa
-#' @importFrom raster rasterToPolygons merge aggregate stackApply stack setValues getValues nlayers
+#' @importFrom raster rasterToPolygons merge aggregate stackApply stack setValues getValues nlayers res
 #' @importFrom spatialEco raster.kendall
 #' @importFrom stats na.omit p.adjust pnorm
 #'
