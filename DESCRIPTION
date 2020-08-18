@@ -19,8 +19,8 @@ LazyData: false
 RoxygenNote: 7.1.1
 NeedsCompilation: no
 Authors@R: c(
- person("Richard", "Lemoine-Rodriguez", email = "Richard.LemoineRodriguez@rub.de",
+ person(given = "Richard", family = "Lemoine-Rodriguez", email = "Richard.LemoineRodriguez@rub.de",
  role = c("cre", "aut")),
- person("Jean", "Francois", "Mas", email = "jfmas@ciga.unam.mx",
+ person(given = c("Jean", "Francois"), family = "Mas", email = "jfmas@ciga.unam.mx",
  role = c("aut")))
-Maintainer: Richard Lemoine <Richard.LemoineRodriguez@rub.de>
+Maintainer: Richard Lemoine Rodriguez <Richard.LemoineRodriguez@rub.de>
