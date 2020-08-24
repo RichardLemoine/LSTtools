@@ -37,8 +37,7 @@
 #'
 #' @examples
 #'# For MOD11A2 LST product saving .tif bands in a different folder
-#'hdf_extract("MOD11A2.A2019169.h08v07.006.2019178033848.hdf",
-#'"C:/MODISLST", conv = TRUE)
+#'hdf_extract("MOD11A2.A2019169.h08v07.006.2019178033848.hdf", "C:/MODISLST", conv = TRUE)
 #'
 #'# For MOD13A3 product saing .tif bands in workdirectory
 #'hdf_extract("MOD13A3.A2019121.h08v07.006.2019162004758.hdf")
@@ -157,8 +156,7 @@ hdf_extract <- function(x, dest = getwd(), conv = TRUE) {
 #'# For LST day MXD11 product, filtering pixels with LST error
 #'# <= 1 and view zenith angle <= 35
 #'x <- "MOD11A1.A2019305.h14v09.006.2019306084028.hdf"
-#'lstfiltered  <- lst_filter(x, time = "day", flag  = 1,
-#'angle = 35, conv = TRUE)
+#'lstfiltered  <- lst_filter(x, time = "day", flag  = 1, angle = 35, conv = TRUE)
 #'
 #' @export
 #' @importFrom gdalUtils get_subdatasets
@@ -286,7 +284,7 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
 #' @param usef Usefulness level to filter pixels according to MODIS user's guide.
 #' @param angle Viewing zenith angle tolerance to filter pixels (in degrees).
 #'
-#'@details Filter the pixels of a MODIS vegetation index product
+#' @details Filter the pixels of a MODIS vegetation index product
 #'based on reliability values if rel = TRUE (default) or usefulness
 #'level and/or view zenith angle defined by the user.
 #'
@@ -306,7 +304,7 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
 #' not NA in the original vegetation index layer are included
 #' in the reliability, usefulness and zenith view angle output layers.
 #'
-#'@references K. Didan, A. Barreto-Munoz, R. Solano & A. Huete.
+#' @references K. Didan, A. Barreto-Munoz, R. Solano & A. Huete.
 #'(2015), MODIS Vegetation Index User's Guide (MOD13 Series)
 #'Collection-6. Arizona, USA, 32.
 #'
@@ -318,8 +316,7 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
 #'# For NDVI MOD13Q1 product, filtering pixels with
 #'usefulness <= 2 and view zenith angle <= 35
 #'x <- "MOD13Q1.A2019305.h14v09.006.2019323202113.hdf"
-#'NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE,
-#'usef = 2, angle = 35)
+#'NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
 #'
 #' @export
 #' @importFrom gdalUtils get_subdatasets
