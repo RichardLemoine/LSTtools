@@ -57,7 +57,7 @@ in rugged regions.
 # For LST day MXD11 product, filtering pixels with LST error
 # <= 1 and view zenith angle <= 35
 x <- "MOD11A1.A2019305.h14v09.006.2019306084028.hdf"
-lstfiltered  <- lst_filter (x, time = "day", flag  = 1,
+lstfiltered  <- lst_filter(x, time = "day", flag  = 1,
 angle = 35, conv = TRUE)
 
 }

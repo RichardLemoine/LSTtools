@@ -1,5 +1,7 @@
 ---
 title: "Compute-Landsat-LST"
+description: >
+  Describe the steps to compute Land Surface Temperature (LST) from  Landsat 8 image.
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Compute-Landsat-LST}
@@ -13,7 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
+First we load the package
 ```{r setup}
 library(LSTtools)
 ```

@@ -55,6 +55,7 @@ This is the default.
 # For Landsat 8 band 10 defining band and extracting scaling
 factors and constants from metadata
 brtempB10 <- br_temp(B10, band = "10", conv = TRUE)
+
 # For Landsat 8 band 10 defining manually the multiplicative
 and additive scaling factors and the k1 and k2 constants
 brtempB10 <- br_temp(B10, conv = TRUE, mult = 0.00033420,
