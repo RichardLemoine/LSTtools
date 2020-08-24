@@ -13,9 +13,14 @@ Encoding: UTF-8
 Depends: R (>= 3.6.0)
 Imports: raster (>= 3.3-13), gdalUtils (>= 2.0.3.2), rgdal (>= 1.5-12),
  sp (>= 1.3-1), usdm (>= 1.1-18), spatialEco (>= 1.3-2)
-Suggests: MODIS, MODIStsp, 
+Suggests: 
+    MODIS,
+    MODIStsp,
+    *,
+    knitr,
+    rmarkdown
 License: GPL-3
-LazyData: false
+LazyData: true
 RoxygenNote: 7.1.1
 NeedsCompilation: no
 Authors@R: c(
@@ -24,3 +29,4 @@ Authors@R: c(
  person(given = c("Jean", "Francois"), family = "Mas", email = "jfmas@ciga.unam.mx",
  role = c("aut")))
 Maintainer: Richard Lemoine Rodriguez <Richard.LemoineRodriguez@rub.de>
+VignetteBuilder: knitr
