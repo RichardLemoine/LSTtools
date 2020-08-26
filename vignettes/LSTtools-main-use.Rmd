@@ -1,0 +1,109 @@
+---
+title: "Compute-Landsat-LST"
+Authors: "Richard Lemoine Rodriguez and Jean François Mas"
+description: >
+  Describe the steps to compute Land Surface Temperature (LST) from a Landsat 8 image and filter the quality of LST and NDVI MODIS pixels.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compute-Landsat-LST}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  comment = "#>"
+)
+```
+
+# First we install and load the packages that will be employed
+```{r setup}
+#install.packages("devtools")
+#install.packages("RcolorBrewer")
+library(devtools)
+#install_github("RichardLemoine/LSTtools", force = TRUE)
+library(LSTtools)
+library(RColorBrewer)
+data(land8)
+```
+
+# Load and define Landsat 8 bands
+```{r warning=FALSE, include=TRUE}
+# Load the data
+data(land8)
+#rm(list = ls())
+# Define the Landsat 8 bands that will be employed
+red <- land8[[3]]
+nir <- land8[[4]]
+tir <- land8[[7]]
+```
+
+# Compute NDVI based on the NIR and Red bands
+```{r}
+veg <- ndvi(nir, red)
+plot(veg, col=rev(colorRampPalette(c("green4", "yellow", "firebrick"))(255)), main = "NDVI")
+```
+
+# Convert band 10 (TIR) from DN to brightness temperature
+```{r}
+br <- br_temp(tir, conv = TRUE, mult = 0.0003342, add = 0.1, k1 = 774.89, k2 = 1321.08)
+plot(br, col=brewer.pal(9, 'YlOrRd'), main = "Brightness temperature (°C)")
+```
+
+# Compute the per-pixel land surface emissivity employing the NDVI threshold method (Sobrino et al., 2008)
+```{r}
+emis <- emissivity(veg, enonveg = 0.95, eveg = 0.99, pveg = FALSE)
+plot(emis[[1]], main = "Emissivity", col=colorRampPalette(c("white", "black"))(255))
+```
+
+# Compute LST based on the inversion of the Planck function employing the brightness temperature and emissivity bands
+```{r}
+lst <- landsat_lst(br, emis, sensor = "L8", conv = FALSE)
+plot(lst, col=brewer.pal(9, 'YlOrRd'), main = "Land Surface Temperature (°C)")
+```
+
+# Compute hot and cold spots analysis based on the Getis-Ord Gi* statistic and the False Discovery Rate (FDR) correction
+```{r}
+
+# Subset extent to avoid time-consuming test
+e <- as(extent(716747.19, 719585.16, 2160408.248, 2163349.293), 'SpatialPolygons') 
+crs(e) <- crs(lst)
+lst_e <- crop(lst, e)
+
+# Compute Getis-Ord Gi* statistic
+spots <- getis(lst_e, dist = 65, p = 0.05)
+
+# Aggregate by cluster type and plot with proper colors
+r <- aggregate(spots, by = "cluster")
+r$color <- ifelse(r$cluster == "Hot spot", "red", #colors for plotting
+                  ifelse(r$cluster == "Cold spot", "blue", "grey"))
+{plot(r, col=r$color, border=NA, axes=F, main = "Hot-cold spots")  #border="gray50" #plot
+legend("bottom", ncol = 3, fill=r$color, legend = c("Cold", "Hot", "No sig."))}
+```
+
+# Filter MODIS LST from a .hdf file
+```{r}
+# Load the MOD11A1 LST and Emissivity MODIS product
+data(mod11a1)
+
+# For LST day MOD11A1 product, filtering pixels with LST error <= 1 and view zenith angle <= 35
+r <- lst_filter(mod11a1, time = "day", flag  = 1, angle = 35, conv = TRUE)
+plot(r[[1]], col=brewer.pal(9, 'YlOrRd'), main = "Filtered Land Surface Temperature (°C)")
+plot(r[[2]], main = "Temperature error (°C)")
+plot(r[[3]], main = "viewing zenith angle (°)")
+```
+# Filter MODIS vegetation index from a .hdf file
+```{r}
+# Load the MOD13A1 vegetation index MODIS product
+data(mod13a1)
+
+# For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
+v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
+plot(v[[1]], main = "Filtered NDVI")
+plot(v[[2]], main = "Reliability")
+plot(v[[3]], main = "Usefulness")
+plot(v[[4]], main = "viewing zenith angle (°)")
+```

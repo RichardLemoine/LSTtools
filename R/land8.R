@@ -1,6 +1,6 @@
 #' Landsat 8 bands
 #'
-#' Landsat 8 subset with bands 2, 3, 4, 5, 6, 7 and 10
+#' Landsat 8 subset with atmospherically corrected (surface reflectance) bands 2, 3, 4, 5, 6, 7 and band 10 in DN
 #'
 #' @docType data
 #'
@@ -18,5 +18,9 @@
 #'
 #' @examples
 #' data(land8)
-#' print(land8)
+#' # Define the Landsat 8 bands that will be employed
+#' red <- land8[[3]]
+#' nir <- land8[[4]]
+#' # Compute NDVI
+#' veg <- ndvi(nir, red)
 "land8"

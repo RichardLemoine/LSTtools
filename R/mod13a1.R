@@ -17,6 +17,10 @@
 #'
 #' @examples
 #' data(mod13a1)
-#' sds <- get_subdatasets(mod13a1)
-#' print(sds)
+#' # For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
+#' v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
+#' plot(v[[1]], main = "Filtered NDVI")
+#' plot(v[[2]], main = "Reliability")
+#' plot(v[[3]], main = "Usefulness")
+#' plot(v[[4]], main = "viewing zenith angle (°)")
 "mod13a1"
