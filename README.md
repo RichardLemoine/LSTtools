@@ -5,7 +5,7 @@ author:
 - Jean François Mas^[Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México]
 description: >
   Describe the steps to compute Land Surface Temperature (LST) from a Landsat 8 image and filter the quality of LST and NDVI MODIS pixels.
-output: rmarkdown::html_vignette
+output: output: rmarkdown::github_document
 vignette: >
   %\VignetteIndexEntry{LSTtools: An R package to process Land Surface Temperature (LST) data derived from Landsat and MODIS images}
   %\VignetteEngine{knitr::rmarkdown}
