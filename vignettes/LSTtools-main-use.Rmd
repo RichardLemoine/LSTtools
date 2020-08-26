@@ -1,6 +1,8 @@
 ---
-title: "Compute-Landsat-LST"
-Authors: "Richard Lemoine Rodriguez and Jean François Mas"
+title: "LSTtools package main use"
+author:
+- Richard Lemoine Rodriguez^[Institute of Geography, Ruhr-Universität Bochum]
+- Jean François Mas^[Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México]
 description: >
   Describe the steps to compute Land Surface Temperature (LST) from a Landsat 8 image and filter the quality of LST and NDVI MODIS pixels.
 output: rmarkdown::html_vignette
@@ -12,60 +14,61 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  fig.width=5, fig.height=5,
   collapse = TRUE,
   message = FALSE,
   warning = FALSE,
   comment = "#>"
 )
 ```
+## This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 
-# First we install and load the packages that will be employed
+## Install and load the packages that will be employed
 ```{r setup}
 #install.packages("devtools")
 #install.packages("RcolorBrewer")
 #library(devtools)
 #install_github("RichardLemoine/LSTtools", force = TRUE)
 library(LSTtools)
+library(raster)
 library(RColorBrewer)
 ```
 
-# Load and define Landsat 8 bands
-```{r warning=FALSE, include=TRUE}
+## Load and define Landsat 8 bands
+```{r warning=FALSE}
 # Load the data
 data(land8)
-#rm(list = ls())
-#.rs.restartR()
 # Define the Landsat 8 bands that will be employed
 red <- land8[[3]]
 nir <- land8[[4]]
 tir <- land8[[7]]
 ```
 
-# Compute NDVI based on the NIR and Red bands
+## Compute NDVI based on the NIR and Red bands (Rouse et al., 1974)
 ```{r}
 veg <- ndvi(nir, red)
 plot(veg, col=rev(colorRampPalette(c("green4", "yellow", "firebrick"))(255)), main = "NDVI")
 ```
 
-# Convert band 10 (TIR) from DN to brightness temperature
+## Convert the DN contained in a Landsat 8 TIR band (10) to TOA brightness temperature employing the radiance multiplicative and additive band rescaling factors and K1 and K2 constants, according to USGS (2019)
 ```{r}
 br <- br_temp(tir, conv = TRUE, mult = 0.0003342, add = 0.1, k1 = 774.89, k2 = 1321.08)
 plot(br, col=brewer.pal(9, 'YlOrRd'), main = "Brightness temperature (°C)")
 ```
 
-# Compute the per-pixel land surface emissivity employing the NDVI threshold method (Sobrino et al., 2008)
+## Compute the per-pixel land surface emissivity employing the NDVI threshold method (Sobrino et al., 2008)
 ```{r}
 emis <- emissivity(veg, enonveg = 0.95, eveg = 0.99, pveg = FALSE)
 plot(emis[[1]], main = "Emissivity", col=colorRampPalette(c("white", "black"))(255))
 ```
 
-# Compute LST based on the inversion of the Planck function employing the brightness temperature and emissivity bands
+## Compute LST based on the inversion of the Planck function employing the brightness temperature and emissivity bands, according to USGS (2019)
 ```{r}
 lst <- landsat_lst(br, emis, sensor = "L8", conv = FALSE)
-plot(lst, col=brewer.pal(9, 'YlOrRd'), main = "Land Surface Temperature (°C)")
+plot(lst, col=brewer.pal(9, 'YlOrRd'), main = "LST (°C)")
 ```
 
-# Compute hot and cold spots analysis based on the Getis-Ord Gi* statistic and the False Discovery Rate (FDR) correction
+## Compute hot and cold spots analysis based on the Getis-Ord Gi* statistic (Getis and Ord, 1996) and the False Discovery Rate (FDR) correction (Benjamini and Hochberg, 1995)
 ```{r}
 
 # Subset extent to avoid time-consuming test
@@ -84,18 +87,19 @@ r$color <- ifelse(r$cluster == "Hot spot", "red", #colors for plotting
 legend("bottom", ncol = 3, fill=r$color, legend = c("Cold", "Hot", "No sig."))}
 ```
 
-# Filter MODIS LST from a .hdf file
+## Filter MODIS LST from a .hdf file according to Wan (2013) and Gawuc and Struzewska (2016) 
 ```{r}
 # Load the MOD11A1 LST and Emissivity MODIS product
 data(mod11a1)
 
 # For LST day MOD11A1 product, filtering pixels with LST error <= 1 and view zenith angle <= 35
 r <- lst_filter(mod11a1, time = "day", flag  = 1, angle = 35, conv = TRUE)
-plot(r[[1]], col=brewer.pal(9, 'YlOrRd'), main = "Filtered Land Surface Temperature (°C)")
-plot(r[[2]], main = "Temperature error (°C)")
-plot(r[[3]], main = "viewing zenith angle (°)")
+plot(r[[1]], col=brewer.pal(9, 'YlOrRd'), main = "Filtered LST (°C)")
+plot(r[[2]], main = "LST error (°C)")
+plot(r[[3]], main = "Viewing zenith angle (°)")
 ```
-# Filter MODIS vegetation index from a .hdf file
+
+## Filter MODIS vegetation index from a .hdf file according to Didan et al. (2005)
 ```{r}
 # Load the MOD13A1 vegetation index MODIS product
 data(mod13a1)
@@ -105,5 +109,22 @@ v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
 plot(v[[1]], main = "Filtered NDVI")
 plot(v[[2]], main = "Reliability")
 plot(v[[3]], main = "Usefulness")
-plot(v[[4]], main = "viewing zenith angle (°)")
+plot(v[[4]], main = "Viewing zenith angle (°)")
 ```
+
+## References
+Benjamini, Y., and Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society Series B, 57, 289–300.
+
+Didan, K. Barreto-Munoz, A., Solano, R. & Huete, A. (2015). MODIS Vegetation Index User’s Guide (MOD13 Series) Collection-6. Arizona, USA, 32.
+
+Gawuc, L., & Struzewska, J. (2016). Impact of MODIS quality control on temporally aggregated urban surface temperature and long-term surface urban heat island intensity. Remote Sensing, 8(5). 
+
+Getis, A. and Ord, J. K. (1996). Local spatial statistics: an overview. In P. Longley and M. Batty (eds) Spatial analysis: modelling in a GIS environment (Cambridge: Geoinformation International), 261–277.
+
+Rouse, J.W., R.H. Haas, J.A. Schell, and D.W. Deering. (1974). Monitoring vegetation systems in the Great Plains with ERTS, In: S.C. Freden, E.P. Mercanti, and M. Becker (eds) Third Earth Resources Technology Satellite–1 Syposium. Volume I: Technical Presentations, NASA SP-351, NASA, Washington, D.C., pp. 309-317.
+
+Sobrino, J. A., Jiménez-Muñoz, J. C., Sòria, G., Romaguera, M., Guanter, L., Moreno, J. & Martínez, P. (2008). Land surface emissivity retrieval from different VNIR and TIR sensors. IEEE Transactions on Geoscience and Remote Sensing, 46(2): 316–327.
+
+USGS. (2019). Landsat 8 data users handbook version 4. USGS Earth Resources Observation and Science (EROS). Sioux Falls, South Dakota. USA. 106.
+
+Wan, Z. (2013). Collection-6 MODIS Land Surface Temperature Products User’s guide. Santa Barbara, USA, 33.

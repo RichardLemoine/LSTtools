@@ -17,7 +17,8 @@ Suggests:
     MODIS,
     MODIStsp,
     knitr,
-    rmarkdown
+    rmarkdown,
+    RColorBrewer
 License: GPL-3
 LazyData: true
 RoxygenNote: 7.1.1
