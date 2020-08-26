@@ -41,8 +41,7 @@ toarefsunB4 <- toa_refsun(B4, band = "4")
 
 # For Landsat 8 band 4 defining manually the multiplicative and
 additive scaling factors and scene sun elevation angle
-toarefsunB4 <- toa_refsun (B4, mult = 0.00033420,
-add = 0.1, sune = 37.22752222)
+toarefsunB4 <- toa_refsun (B4, mult = 0.00033420, add = 0.1, sune = 37.22752222)
 
 }
 \references{

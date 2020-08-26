@@ -23,11 +23,10 @@ knitr::opts_chunk$set(
 ```{r setup}
 #install.packages("devtools")
 #install.packages("RcolorBrewer")
-library(devtools)
+#library(devtools)
 #install_github("RichardLemoine/LSTtools", force = TRUE)
 library(LSTtools)
 library(RColorBrewer)
-data(land8)
 ```
 
 # Load and define Landsat 8 bands
@@ -35,6 +34,7 @@ data(land8)
 # Load the data
 data(land8)
 #rm(list = ls())
+#.rs.restartR()
 # Define the Landsat 8 bands that will be employed
 red <- land8[[3]]
 nir <- land8[[4]]

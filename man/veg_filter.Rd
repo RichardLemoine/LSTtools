@@ -48,8 +48,7 @@ this is not included can be used in the filter.
 # For NDVI MOD13Q1 product, filtering pixels with
 usefulness <= 2 and view zenith angle <= 35
 x <- "MOD13Q1.A2019305.h14v09.006.2019323202113.hdf"
-NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE,
-usef = 2, angle = 35)
+NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
 
 }
 \references{
