@@ -34,8 +34,8 @@ p values to reject the null hypothesis are 0.1, 0.05, 0.01,
 0.001 and 0.0001.
 }
 \examples{
-# For an LST layer derived from Landsat 8
-spots <- getis(lstl8, dist = 70, p = 0.05)
+\dontrun{# For an LST layer derived from Landsat 8
+spots <- getis(lstl8, dist = 70, p = 0.05)}
 
 }
 \references{

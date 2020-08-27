@@ -16,8 +16,8 @@
 #' Technical Presentations, NASA SP-351, NASA, Washington, D.C.,
 #' pp. 309-317.
 #' @examples
-#'# For Landsat 8 bands
-#'ndviind <- ndvi(B5, B4)
+#' \dontrun{# For Landsat 8 bands
+#' ndviind <- ndvi(B5, B4)}
 #'
 #' @export
 #'
@@ -59,8 +59,8 @@ ndvi <- function(x, y) {
 #' Remote Sensing of Environment 83:195-213.
 #'
 #' @examples
-#'# For Landsat 8 bands
-#'eviind <- evi(B5, B4, B2)
+#' \dontrun{# For Landsat 8 bands
+#' eviind <- evi(B5, B4, B2)}
 #'
 #' @export
 #'
@@ -88,8 +88,8 @@ evi <-function(x, y, b){
 #' index (SAVI). Remote Sens. Environ., 25, pp. 295-309.
 #'
 #' @examples
-#'# For Landsat 8 bands
-#'saviind <- savi(B5, B4)
+#' \dontrun{# For Landsat 8 bands
+#' saviind <- savi(B5, B4)}
 #'
 #' @export
 #'
@@ -120,8 +120,8 @@ savi <-function(x, y){
 #' Sensing, ISPRS, 723-730.
 #'
 #' @examples
-#'# For Landsat 8 bands
-#'msaviind <- msavi(B5, B4)
+#' \dontrun{# For Landsat 8 bands
+#' msaviind <- msavi(B5, B4)}
 #'
 #' @export
 #'
@@ -152,8 +152,8 @@ msavi <-function(x, y){
 #' 583-594.
 #'
 #' @examples
-#'# For Landsat 8 bands
-#'ndbiind <- ndbi(B6, B5)
+#' \dontrun{# For Landsat 8 bands
+#' ndbiind <- ndbi(B6, B5)}
 #'
 #' @export
 #'
@@ -184,8 +184,8 @@ ndbi <- function(x, y) {
 #' 31(Part B7), 321-326.
 #'
 #' @examples
-#'# For Landsat 8 bands
-#'urbind <- urbi (B7, B5)
+#' \dontrun{# For Landsat 8 bands
+#' urbind <- urbi (B7, B5)}
 #'
 #' @export
 #'
@@ -215,8 +215,8 @@ urbi <- function(x, y) {
 #' land features in satellite imagery. Int. J. Remote Sens. 29, 4269-4276.
 #'
 #' @examples
-#'# For Landsat 8 bands
-#'ibiind <- ibi(B6, B5, B4, B3)
+#' \dontrun{# For Landsat 8 bands
+#' ibiind <- ibi(B6, B5, B4, B3)}
 #'
 #' @export
 #'
@@ -259,8 +259,8 @@ ibi <- function(x, y, r, g) {
 #' 46(2): 316-327.
 #'
 #' @examples
-#'# For default non-vegetation and vegetation emissivity values
-#'emiss <- emissivity(x, enonveg = 0.95, eveg = 0.99, pveg = TRUE)
+#' \dontrun{# For default non-vegetation and vegetation emissivity values
+#' emiss <- emissivity(x, enonveg = 0.95, eveg = 0.99, pveg = TRUE)}
 #'
 #' @export
 #' @importFrom raster merge
@@ -324,8 +324,8 @@ emissivity <- function(x, nonveg = 0.2, veg = 0.5, enonveg = 0.95, eveg = 0.99, 
 #' application to major cities in Greece. Sol. Energy. 81 358-368.
 #'
 #' @examples
-#'# For LST derived from Landsat 8 sensor in Celsius degrees.
-#'L8lst <- landsat_lst(Brtempb10, emiss, Sensor = "L8", conv = TRUE)
+#' \dontrun{# For LST derived from Landsat 8 sensor in Celsius degrees.
+#' L8lst <- landsat_lst(Brtempb10, emiss, Sensor = "L8", conv = TRUE)}
 #'
 #' @export
 #'

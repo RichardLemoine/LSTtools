@@ -27,8 +27,8 @@ When y is not defined, it is assumed that the LST raster is
 already cropped to the city extent.
 }
 \examples{
-# Specifying city polygon
-HIA.City <- hia(Llstl8, citypol)
+\dontrun{# Specifying city polygon
+HIA.City <- hia(Llstl8, citypol)}
 
 }
 \references{

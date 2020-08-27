@@ -30,8 +30,8 @@ class. x and y must have the same projection and id must be a
 numeric value.
 }
 \examples{
-# For urban land use class with id = 2
-uhiind <- uhi_stats(lstL8, landuse, id = 2)
+\dontrun{# For urban land use class with id = 2
+uhiind <- uhi_stats(lstL8, landuse, id = 2)}
 
 }
 \references{

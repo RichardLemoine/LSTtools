@@ -27,8 +27,8 @@ the surface reflectance SWIR, NIR, Red and Green bands of a
 satellite image.
 }
 \examples{
-# For Landsat 8 bands
-ibiind <- ibi(B6, B5, B4, B3)
+\dontrun{# For Landsat 8 bands
+ibiind <- ibi(B6, B5, B4, B3)}
 
 }
 \references{

@@ -32,13 +32,13 @@ rescaling factors. These scaling factors can be manually defined
 employing mult and add parameters. In this case, band is ignored.
 }
 \examples{
-# For Landsat 8 band 10 defining band and extracting scaling
+\dontrun{# For Landsat 8 band 10 defining band and extracting scaling
 # factors from metadata
 toaradB10 <- toa_rad(B10, band = "10")
 
 # For Landsat 8 band 10 defining manually the multiplicative
 # and additive scaling factors
-toaradB10 <- toa_rad(B10, mult = 0.00033420, add = 0.1)
+toaradB10 <- toa_rad(B10, mult = 0.00033420, add = 0.1)}
 
 }
 \references{

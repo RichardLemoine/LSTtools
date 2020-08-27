@@ -36,11 +36,11 @@
 #' IEEE Trans. Geosci. Remote Sens., v36, n4, pp. 1324-1338.
 #'
 #' @examples
-#'# For MOD11A2 LST product saving .tif bands in a different folder
-#'hdf_extract("MOD11A2.A2019169.h08v07.006.2019178033848.hdf", "C:/MODISLST", conv = TRUE)
+#' \dontrun{# For MOD11A2 LST product saving .tif bands in a different folder
+#' hdf_extract("MOD11A2.A2019169.h08v07.006.2019178033848.hdf", "C:/MODISLST", conv = TRUE)
 #'
-#'# For MOD13A3 product saing .tif bands in workdirectory
-#'hdf_extract("MOD13A3.A2019121.h08v07.006.2019162004758.hdf")
+#' # For MOD13A3 product saing .tif bands in workdirectory
+#' hdf_extract("MOD13A3.A2019121.h08v07.006.2019162004758.hdf")}
 #'
 #' @export
 #'
@@ -153,10 +153,10 @@ hdf_extract <- function(x, dest = getwd(), conv = TRUE) {
 #'https://doi.org/10.1002/2013JD021101
 #'
 #' @examples
-#'# For LST day MXD11 product, filtering pixels with LST error
-#'# <= 1 and view zenith angle <= 35
-#'x <- "MOD11A1.A2019305.h14v09.006.2019306084028.hdf"
-#'lstfiltered  <- lst_filter(x, time = "day", flag  = 1, angle = 35, conv = TRUE)
+#' \dontrun{# For LST day MXD11 product, filtering pixels with LST error
+#' # <= 1 and view zenith angle <= 35
+#' x <- "MOD11A1.A2019305.h14v09.006.2019306084028.hdf"
+#' lstfiltered  <- lst_filter(x, time = "day", flag  = 1, angle = 35, conv = TRUE)}
 #'
 #' @export
 #' @importFrom gdalUtils get_subdatasets
@@ -313,10 +313,10 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
 #'Product Evaluation (LDOPE) Tools, release 1.4. Arizona, USA, 103.
 #'
 #' @examples
-#'# For NDVI MOD13Q1 product, filtering pixels with
-#'usefulness <= 2 and view zenith angle <= 35
-#'x <- "MOD13Q1.A2019305.h14v09.006.2019323202113.hdf"
-#'NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
+#' \dontrun{# For NDVI MOD13Q1 product, filtering pixels with
+#' usefulness <= 2 and view zenith angle <= 35
+#' x <- "MOD13Q1.A2019305.h14v09.006.2019323202113.hdf"
+#' NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)}
 #'
 #' @export
 #' @importFrom gdalUtils get_subdatasets

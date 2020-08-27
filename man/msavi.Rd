@@ -23,8 +23,8 @@ Compute the Modified Soil-Adjusted Vegetation Index
 of a satellite image.
 }
 \examples{
-# For Landsat 8 bands
-msaviind <- msavi(B5, B4)
+\dontrun{# For Landsat 8 bands
+msaviind <- msavi(B5, B4)}
 
 }
 \references{

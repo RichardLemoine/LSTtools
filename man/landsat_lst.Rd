@@ -32,8 +32,8 @@ Landsat TIR band. If parameter conv = TRUE, temperature units
 are convert from Kelvin to Celsius degrees. This is the default.
 }
 \examples{
-# For LST derived from Landsat 8 sensor in Celsius degrees.
-L8lst <- landsat_lst(Brtempb10, emiss, Sensor = "L8", conv = TRUE)
+\dontrun{# For LST derived from Landsat 8 sensor in Celsius degrees.
+L8lst <- landsat_lst(Brtempb10, emiss, Sensor = "L8", conv = TRUE)}
 
 }
 \references{

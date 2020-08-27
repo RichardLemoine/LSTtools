@@ -32,13 +32,13 @@ can be manually defined employing mult and add parameters. In this
 case, band is ignored.
 }
 \examples{
-# For Landsat 8 band 4 defining band and extracting scaling
+\dontrun{# For Landsat 8 band 4 defining band and extracting scaling
 factors from metadata
 toarefB4 <- toa_ref(B4, band = "4")
 
 # For Landsat 8 band 4 defining manually the multiplicative
 and additive scaling factors
-toarefB4 <- toa_ref(B4, mult = 0.00033420, add = 0.1)
+toarefB4 <- toa_ref(B4, mult = 0.00033420, add = 0.1)}
 
 }
 \references{

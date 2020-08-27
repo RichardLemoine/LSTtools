@@ -44,8 +44,8 @@ is logical. If TRUE, the proportion of vegetation layer is added
 to the output. Default is FALSE.
 }
 \examples{
-# For default non-vegetation and vegetation emissivity values
-emiss <- emissivity(x, enonveg = 0.95, eveg = 0.99, pveg = TRUE)
+\dontrun{# For default non-vegetation and vegetation emissivity values
+emiss <- emissivity(x, enonveg = 0.95, eveg = 0.99, pveg = TRUE)}
 
 }
 \references{

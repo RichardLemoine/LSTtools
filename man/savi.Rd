@@ -23,8 +23,8 @@ Compute the Soil-Adjusted Vegetation Index
 bands of a satellite image.
 }
 \examples{
-# For Landsat 8 bands
-saviind <- savi(B5, B4)
+\dontrun{# For Landsat 8 bands
+saviind <- savi(B5, B4)}
 
 }
 \references{

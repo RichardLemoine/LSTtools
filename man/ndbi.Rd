@@ -23,8 +23,8 @@ employing the surface reflectance SWIR and NIR bands of a
 satellite image.
 }
 \examples{
-# For Landsat 8 bands
-ndbiind <- ndbi(B6, B5)
+\dontrun{# For Landsat 8 bands
+ndbiind <- ndbi(B6, B5)}
 
 }
 \references{

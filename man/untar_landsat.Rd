@@ -25,11 +25,11 @@ name of the compressed file. If dest is not specified,
 default is the same as orig.
 }
 \examples{
-# Export files to the same folder as input
+\dontrun{# Export files to the same folder as input
 untar_landsat("C:/Landsat/2017")
 
 # Export files to a folder different than the input
-untar_landsat("C:/Landsat/2017", "C:/Landsat")
+untar_landsat("C:/Landsat/2017", "C:/Landsat")}
 }
 \references{
 https://earthexplorer.usgs.gov/

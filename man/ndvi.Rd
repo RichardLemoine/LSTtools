@@ -22,8 +22,8 @@ Compute the Normalized Difference Vegetation index (NDVI)
 employing the surface reflectance NIR and Red bands of a satellite image.
 }
 \examples{
-# For Landsat 8 bands
-ndviind <- ndvi(B5, B4)
+\dontrun{# For Landsat 8 bands
+ndviind <- ndvi(B5, B4)}
 
 }
 \references{

@@ -27,8 +27,8 @@ employing the surface reflectance NIR, Red and Blue
 bands of a satellite image.
 }
 \examples{
-# For Landsat 8 bands
-eviind <- evi(B5, B4, B2)
+\dontrun{# For Landsat 8 bands
+eviind <- evi(B5, B4, B2)}
 
 }
 \references{

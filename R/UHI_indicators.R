@@ -38,8 +38,8 @@
 #' Symposium (IGARSS 2010) (pp. 3327-3330).
 #'
 #' @examples
-#'# For urban land use class with id = 2
-#'uhiind <- uhi_stats(lstL8, landuse, id = 2)
+#' \dontrun{# For urban land use class with id = 2
+#' uhiind <- uhi_stats(lstL8, landuse, id = 2)}
 #'
 #' @export
 #' @importFrom raster crop resample zonal
@@ -84,8 +84,8 @@ uhi_stats <- function(x, y, id = NULL){
 #' plus data. Sensors, 8(11), 7453-7468.
 #'
 #' @examples
-#'# Specifying city polygon
-#'HIA.City <- hia(Llstl8, citypol)
+#' \dontrun{# Specifying city polygon
+#' HIA.City <- hia(Llstl8, citypol)}
 #'
 #' @export
 #' @importFrom raster crop trim mask cellStats area
@@ -142,8 +142,8 @@ hia <- function(x, y = NULL){
 #' International), 261-277.
 #'
 #' @examples
-#'# For an LST layer derived from Landsat 8
-#'spots <- getis(lstl8, dist = 70, p = 0.05)
+#' \dontrun{# For an LST layer derived from Landsat 8
+#' spots <- getis(lstl8, dist = 70, p = 0.05)}
 #'
 #' @export
 #' @importFrom usdm lisa
@@ -276,8 +276,8 @@ getis <- function(x, dist = NULL, p = 0.05){
 #' International), 261-277.
 #'
 #' @examples
-#'# For a MODIS LST raster stack
-#'lst_trends <- space_time_trends(x, time = 2, stat = "mean", dist = 2100, p = 0.05)
+#' \dontrun{# For a MODIS LST raster stack
+#' lst_trends <- space_time_trends(x, time = 2, stat = "mean", dist = 2100, p = 0.05)}
 #'
 #' @export
 #' @importFrom usdm lisa

@@ -99,8 +99,8 @@ New cold spot: statistically significant cold spot only in the
 last time-step	.
 }
 \examples{
-# For a MODIS LST raster stack
-lst_trends <- space_time_trends(x, time = 2, stat = "mean", dist = 2100, p = 0.05)
+\dontrun{# For a MODIS LST raster stack
+lst_trends <- space_time_trends(x, time = 2, stat = "mean", dist = 2100, p = 0.05)}
 
 }
 \references{

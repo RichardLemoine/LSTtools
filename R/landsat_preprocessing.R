@@ -14,11 +14,11 @@
 #'
 #' @references https://earthexplorer.usgs.gov/
 #' @examples
-#' # Export files to the same folder as input
+#' \dontrun{# Export files to the same folder as input
 #' untar_landsat("C:/Landsat/2017")
 #'
 #' # Export files to a folder different than the input
-#' untar_landsat("C:/Landsat/2017", "C:/Landsat")
+#' untar_landsat("C:/Landsat/2017", "C:/Landsat")}
 #' @export
 #' @importFrom utils untar
 #'
@@ -69,13 +69,13 @@ untar_landsat <- function(orig, dest = orig) {
 #' USGS Earth Resources Observation and Science (EROS). Sioux Falls,
 #' South Dakota. USA. 106.
 #' @examples
-#' # For Landsat 8 band 10 defining band and extracting scaling
+#' \dontrun{# For Landsat 8 band 10 defining band and extracting scaling
 #' # factors from metadata
 #' toaradB10 <- toa_rad(B10, band = "10")
 #'
 #' # For Landsat 8 band 10 defining manually the multiplicative
 #' # and additive scaling factors
-#' toaradB10 <- toa_rad(B10, mult = 0.00033420, add = 0.1)
+#' toaradB10 <- toa_rad(B10, mult = 0.00033420, add = 0.1)}
 #'
 #' @export
 #'
@@ -120,13 +120,13 @@ if (is.null(mult) & is.null(add)){
 #' USGS Earth Resources Observation and Science (EROS). Sioux Falls,
 #' South Dakota. USA. 106.
 #' @examples
-#' # For Landsat 8 band 4 defining band and extracting scaling
+#' \dontrun{# For Landsat 8 band 4 defining band and extracting scaling
 #' factors from metadata
 #' toarefB4 <- toa_ref(B4, band = "4")
 #'
 #' # For Landsat 8 band 4 defining manually the multiplicative
 #' and additive scaling factors
-#' toarefB4 <- toa_ref(B4, mult = 0.00033420, add = 0.1)
+#' toarefB4 <- toa_ref(B4, mult = 0.00033420, add = 0.1)}
 #'
 #' @export
 #'
@@ -173,13 +173,13 @@ if (is.null(mult) & is.null(add)){
 #' USGS Earth Resources Observation and Science (EROS). Sioux Falls,
 #' South Dakota. USA. 106.
 #' @examples
-#' # For Landsat 8 band 4 defining band and extracting scaling
+#' \dontrun{# For Landsat 8 band 4 defining band and extracting scaling
 #' factors from metadata
 #' toarefsunB4 <- toa_refsun(B4, band = "4")
 #'
 #' # For Landsat 8 band 4 defining manually the multiplicative and
 #' additive scaling factors and scene sun elevation angle
-#' toarefsunB4 <- toa_refsun (B4, mult = 0.00033420, add = 0.1, sune = 37.22752222)
+#' toarefsunB4 <- toa_refsun (B4, mult = 0.00033420, add = 0.1, sune = 37.22752222)}
 #'
 #' @export
 #'
@@ -237,14 +237,13 @@ toa_refsun <- function(x, band= NULL, mult = NULL, add = NULL, sune = NULL) {
 #' USGS Earth Resources Observation and Science (EROS). Sioux Falls,
 #' South Dakota. USA. 106.
 #' @examples
-#'# For Landsat 8 band 10 defining band and extracting scaling
-#'factors and constants from metadata
-#'brtempB10 <- br_temp(B10, band = "10", conv = TRUE)
+#' \dontrun{# For Landsat 8 band 10 defining band and extracting scaling
+#' factors and constants from metadata
+#' brtempB10 <- br_temp(B10, band = "10", conv = TRUE)
 #'
-#'# For Landsat 8 band 10 defining manually the multiplicative
-#'and additive scaling factors and the k1 and k2 constants
-#'brtempB10 <- br_temp(B10, conv = TRUE, mult = 0.00033420,
-#'add = 0.1, k1 = 774.8853, k2 = 1321.0789)
+#' # For Landsat 8 band 10 defining manually the multiplicative
+#' and additive scaling factors and the k1 and k2 constants
+#' brtempB10 <- br_temp(B10, conv = TRUE, mult = 0.00033420, add = 0.1, k1 = 774.8853, k2 = 1321.0789)}
 #'
 #' @export
 #'
