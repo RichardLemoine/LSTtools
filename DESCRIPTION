@@ -37,4 +37,4 @@ Authors@R:
              comment = c(ORCID = "0000-0002-6138-9879"))
 Author: Richard Lemoine Rodriguez [cre, aut] 
         Jean Francois Mas [aut]
-Maintainer: Richard Lemoine Rodriguez <Richard.LemoineRodriguez@rub.de>
+Maintainer: Richard Lemoine-Rodriguez <Richard.LemoineRodriguez@rub.de>

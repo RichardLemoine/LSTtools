@@ -25,7 +25,7 @@ tir <- land8[[7]]
 ```
 
 ## Compute NDVI based on the NIR and Red bands (Rouse et al., 1974)
-```{r}
+```{r, echo=FALSE}
 veg <- ndvi(nir, red)
 plot(veg, col=rev(colorRampPalette(c("green4", "yellow", "firebrick"))(255)), main = "NDVI")
 ```
