@@ -1,3 +1,7 @@
+---
+output: github_document
+---
+
 # LSTtools: An R package to process Land Surface Temperature (LST) data derived from Landsat and MODIS images
 ## Authors:
 - Richard Lemoine Rodriguez, Institute of Geography, Ruhr-Universität Bochum.
