@@ -5,9 +5,9 @@
 
 ## Authors:
 
-### \* Richard Lemoine Rodriguez, Institute of Geography, Ruhr-Universität Bochum
+### \* *Richard Lemoine Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
 
-### \* Jean François Mas, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
+### \* *Jean François Mas*, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
 
 ## This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 
