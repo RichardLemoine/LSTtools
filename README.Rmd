@@ -4,7 +4,7 @@ description: >
   Describe the steps to compute Land Surface Temperature (LST) from a Landsat 8 image and filter the quality of LST and NDVI MODIS pixels.
 output: github_document
 vignette: >
-  %\VignetteIndexEntry{Compute-Landsat-LST}
+  %\VignetteIndexEntry{LSTtools package main use}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,12 +21,12 @@ knitr::opts_chunk$set(
 # An R package to process thermal data derived from Landsat and MODIS images
 
 ## Authors:
-### - Richard Lemoine Rodriguez, Institute of Geography, Ruhr-Universität Bochum
-### - Jean François Mas, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
+### * Richard Lemoine Rodriguez, Institute of Geography, Ruhr-Universität Bochum
+### * Jean François Mas, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
 
-### This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
+## This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 
-### Install and load the packages that will be employed
+## Install and load the packages that will be employed
 ```{r setup}
 #install.packages("devtools")
 #install.packages("RcolorBrewer")

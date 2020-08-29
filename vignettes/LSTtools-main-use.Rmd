@@ -7,7 +7,7 @@ description: >
   Describe the steps to compute Land Surface Temperature (LST) from a Landsat 8 image and filter the quality of LST and NDVI MODIS pixels.
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Compute-Landsat-LST}
+  %\VignetteIndexEntry{LSTtools package main use}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

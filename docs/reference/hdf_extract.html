@@ -183,11 +183,8 @@ gridding and compositing methodology: level 2 grid".
 IEEE Trans. Geosci. Remote Sens., v36, n4, pp. 1324-1338.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># For MOD11A2 LST product saving .tif bands in a different folder</span>
-<span class='fu'>hdf_extract</span>(<span class='st'>"MOD11A2.A2019169.h08v07.006.2019178033848.hdf"</span>, <span class='st'>"C:/MODISLST"</span>, <span class='kw'>conv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: comando ejecutado '"C:\Program Files\QGIS 3.10\bin\gdalinfo.exe" "MOD11A2.A2019169.h08v07.006.2019178033848.hdf"' tiene estatus 1</span></div><div class='output co'>#&gt; <span class='error'>Error in split1[[1]]: subíndice fuera de  los límites</span></div><div class='input'>
-<span class='co'># For MOD13A3 product saing .tif bands in workdirectory</span>
-<span class='fu'>hdf_extract</span>(<span class='st'>"MOD13A3.A2019121.h08v07.006.2019162004758.hdf"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: comando ejecutado '"C:\Program Files\QGIS 3.10\bin\gdalinfo.exe" "MOD13A3.A2019121.h08v07.006.2019162004758.hdf"' tiene estatus 1</span></div><div class='output co'>#&gt; <span class='error'>Error in split1[[1]]: subíndice fuera de  los límites</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='co'># For MOD11A2 LST product saving .tif bands in a different folder</span>
+<span class='fu'>hdf_extract</span>(<span class='st'>"MOD11A2.A2019169.h08v07.006.2019178033848.hdf"</span>, <span class='st'>"C:/MODISLST"</span>, <span class='kw'>conv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -199,7 +196,7 @@ IEEE Trans. Geosci. Remote Sens., v36, n4, pp. 1324-1338.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by Richard Lemoine-Rodriguez, Jean Francois Mas.</p>
 </div>
 
 <div class="pkgdown">

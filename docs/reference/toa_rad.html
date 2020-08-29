@@ -175,9 +175,10 @@ USGS Earth Resources Observation and Science (EROS). Sioux Falls,
 South Dakota. USA. 106.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># For Landsat 8 band 10 defining band and extracting scaling</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='co'># For Landsat 8 band 10 defining band and extracting scaling</span>
 <span class='co'># factors from metadata</span>
-<span class='no'>toaradB10</span> <span class='kw'>&lt;-</span> <span class='fu'>toa_rad</span>(<span class='no'>B10</span>, <span class='kw'>band</span> <span class='kw'>=</span> <span class='st'>"10"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): argumento 'description' inválido</span></div><div class='input'>
+<span class='no'>toaradB10</span> <span class='kw'>&lt;-</span> <span class='fu'>toa_rad</span>(<span class='no'>B10</span>, <span class='kw'>band</span> <span class='kw'>=</span> <span class='st'>"10"</span>)
+
 <span class='co'># For Landsat 8 band 10 defining manually the multiplicative</span>
 <span class='co'># and additive scaling factors</span>
 <span class='no'>toaradB10</span> <span class='kw'>&lt;-</span> <span class='fu'>toa_rad</span>(<span class='no'>B10</span>, <span class='kw'>mult</span> <span class='kw'>=</span> <span class='fl'>0.00033420</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in toa_rad(B10, mult = 0.0003342, add = 0.1): objeto 'B10' no encontrado</span></div><div class='input'>
@@ -193,7 +194,7 @@ South Dakota. USA. 106.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by Richard Lemoine-Rodriguez, Jean Francois Mas.</p>
 </div>
 
 <div class="pkgdown">

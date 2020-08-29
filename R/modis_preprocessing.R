@@ -37,10 +37,7 @@
 #'
 #' @examples
 #' \dontrun{# For MOD11A2 LST product saving .tif bands in a different folder
-#' hdf_extract("MOD11A2.A2019169.h08v07.006.2019178033848.hdf", "C:/MODISLST", conv = TRUE)
-#'
-#' # For MOD13A3 product saing .tif bands in workdirectory
-#' hdf_extract("MOD13A3.A2019121.h08v07.006.2019162004758.hdf")}
+#' hdf_extract("MOD11A2.A2019169.h08v07.006.2019178033848.hdf", "C:/MODISLST", conv = TRUE)}
 #'
 #' @export
 #'

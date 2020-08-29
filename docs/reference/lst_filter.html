@@ -225,10 +225,10 @@ Journal of Geophysical Research, 119(6), 3185-3201.
 https://doi.org/10.1002/2013JD021101</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># For LST day MXD11 product, filtering pixels with LST error</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='co'># For LST day MXD11 product, filtering pixels with LST error</span>
 <span class='co'># &lt;= 1 and view zenith angle &lt;= 35</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='st'>"MOD11A1.A2019305.h14v09.006.2019306084028.hdf"</span>
-<span class='no'>lstfiltered</span>  <span class='kw'>&lt;-</span> <span class='fu'>lst_filter</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"day"</span>, <span class='kw'>flag</span>  <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>35</span>, <span class='kw'>conv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: comando ejecutado '"C:\Program Files\QGIS 3.10\bin\gdalinfo.exe" "MOD11A1.A2019305.h14v09.006.2019306084028.hdf"' tiene estatus 1</span></div><div class='output co'>#&gt; <span class='error'>Error in split1[[1]]: subíndice fuera de  los límites</span></div><div class='input'>
+<span class='no'>lstfiltered</span>  <span class='kw'>&lt;-</span> <span class='fu'>lst_filter</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"day"</span>, <span class='kw'>flag</span>  <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>35</span>, <span class='kw'>conv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as.list.environment(environment()): objeto 'x' no encontrado</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -241,7 +241,7 @@ https://doi.org/10.1002/2013JD021101</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by Richard Lemoine-Rodriguez, Jean Francois Mas.</p>
 </div>
 
 <div class="pkgdown">

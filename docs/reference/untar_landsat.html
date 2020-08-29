@@ -163,8 +163,9 @@ default is the same as orig.</p>
     <p>https://earthexplorer.usgs.gov/</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Export files to the same folder as input</span>
-<span class='fu'>untar_landsat</span>(<span class='st'>"C:/Landsat/2017"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in setwd(orig): no es posible cambiar el directorio de trabajo</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='co'># Export files to the same folder as input</span>
+<span class='fu'>untar_landsat</span>(<span class='st'>"C:/Landsat/2017"</span>)
+
 <span class='co'># Export files to a folder different than the input</span>
 <span class='fu'>untar_landsat</span>(<span class='st'>"C:/Landsat/2017"</span>, <span class='st'>"C:/Landsat"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in setwd(orig): no es posible cambiar el directorio de trabajo</span></div></pre>
   </div>
@@ -178,7 +179,7 @@ default is the same as orig.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by Richard Lemoine-Rodriguez, Jean Francois Mas.</p>
 </div>
 
 <div class="pkgdown">
