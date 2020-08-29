@@ -19,11 +19,11 @@ MODIS Vegetation Indices MOD13A1 product
 \examples{
 data(mod13a1)
 # For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
-v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
-plot(v[[1]], main = "Filtered NDVI")
-plot(v[[2]], main = "Reliability")
-plot(v[[3]], main = "Usefulness")
-plot(v[[4]], main = "viewing zenith angle (Â°)")
+v <- suppressWarnings(veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35))
+raster::plot(v[[1]], main = "Filtered NDVI")
+raster::plot(v[[2]], main = "Reliability")
+raster::plot(v[[3]], main = "Usefulness")
+raster::plot(v[[4]], main = "viewing zenith angle (Â°)")
 }
 \references{
 Didan, K., A. Barreto-Munoz, R. Solano & A. Huete. (2015), MODIS

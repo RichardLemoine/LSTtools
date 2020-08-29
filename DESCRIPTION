@@ -33,6 +33,8 @@ Authors@R:
       person(given = c("Jean", "Francois"), 
              family = "Mas", 
              email = "jfmas@ciga.unam.mx",
-             role = "aut", 
-             comment = c(ORCID = "0000-0002-6138-9879"))
+             role = "aut",
+             comment = c(ORCID = "0000-0002-6138-9879")))
+Author: Richard Lemoine Rodriguez [cre, aut] 
+        Jean Francois Mas [aut]
 Maintainer: Richard Lemoine-Rodriguez <Richard.LemoineRodriguez@rub.de>
