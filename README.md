@@ -1,4 +1,4 @@
-LSTtools package main use
+LSTtools
 ================
 Richard Lemoine Rodriguez
 
@@ -118,7 +118,7 @@ data(mod13a1)
 
 # For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
 v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
-plot(v[[1]], main = "Filtered NDVI")
+plot(v[[1]], col=rev(colorRampPalette(c("green4", "yellow", "firebrick"))(255)), main = "Filtered NDVI")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
