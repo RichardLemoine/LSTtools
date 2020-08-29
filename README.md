@@ -1,6 +1,13 @@
-LSTtools
+*LSTtools*
 ================
-Richard Lemoine Rodriguez
+
+# An R package to process thermal data derived from Landsat and MODIS images
+
+## authors:
+
+## \- Jean François Mas, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
+
+## \- Richard Lemoine Rodriguez, Institute of Geography, Ruhr-Universität Bochum
 
 ## This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 
