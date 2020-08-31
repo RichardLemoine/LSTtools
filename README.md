@@ -177,7 +177,7 @@ Getis, A. and Ord, J. K. (1996). Local spatial statistics: an overview.
 In P. Longley and M. Batty (eds) Spatial analysis: modelling in a GIS
 environment (Cambridge: Geoinformation International), 261–277.
 
-Rouse, J.W., R.H. Haas, J.A. Schell, and D.W. Deering. (1974).
+Rouse, J. W., Haas, R. H., Schell, J. A. and Deering, D. W. (1974).
 Monitoring vegetation systems in the Great Plains with ERTS, In: S.C.
 Freden, E.P. Mercanti, and M. Becker (eds) Third Earth Resources
 Technology Satellite–1 Syposium. Volume I: Technical Presentations, NASA
