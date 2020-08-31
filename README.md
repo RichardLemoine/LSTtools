@@ -146,16 +146,18 @@ plot(v[[3]], main = "Usefulness")
 plot(v[[4]], main = "Viewing zenith angle (°)")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-4.png)<!-- --> \#\#
-Acknowledgements Richard Lemoine Rodriguez acknowledges the PhD
-scholarship and financial support provided by the Consejo Nacional de
-Ciencia y Tecnología (CONACyT 308198/471027) and the Deutscher
-Akademischer Austauschdienst (DAAD 91680266). Both authors acknowledge
-the funding and support of the project “Herramientas para la Enseñanza
-de la Geomática con programas de Código Abierto” of the Programa de
-Apoyo a Proyectos para la Innovación y Mejoramiento de la Enseñanza
-(PAPIME), number PE117519, from the National Autonomous University of
-Mexico.
+![](README_files/figure-gfm/unnamed-chunk-9-4.png)<!-- -->
+
+## Acknowledgements
+
+Richard Lemoine Rodriguez acknowledges the PhD scholarship and financial
+support provided by the Consejo Nacional de Ciencia y Tecnología
+(CONACyT 308198/471027) and the Deutscher Akademischer Austauschdienst
+(DAAD 91680266). Both authors acknowledge the funding and support of the
+project “Herramientas para la Enseñanza de la Geomática con programas de
+Código Abierto” of the Programa de Apoyo a Proyectos para la Innovación
+y Mejoramiento de la Enseñanza (PAPIME), number PE117519, from the
+National Autonomous University of Mexico.
 
 ## References
 
