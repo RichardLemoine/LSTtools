@@ -59,7 +59,7 @@ plot(br, col=brewer.pal(9, 'YlOrRd'), main = "Brightness temperature (°C)")
 ## Compute the per-pixel land surface emissivity employing the NDVI threshold method (Sobrino et al., 2008)
 ```{r}
 emis <- emissivity(veg, enonveg = 0.95, eveg = 0.99, pveg = FALSE)
-plot(emis[[1]], main = "Emissivity", col=colorRampPalette(c("white", "black"))(255))
+plot(emis, main = "Emissivity", col=colorRampPalette(c("white", "black"))(255))
 ```
 
 ## Compute LST based on the inversion of the Planck function employing the brightness temperature and emissivity bands, according to USGS (2019)

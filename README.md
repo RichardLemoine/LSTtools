@@ -1,23 +1,39 @@
-*LSTtools*
+*LSTtools: An R package to process thermal data derived from Landsat and
+MODIS images*
 ================
 
-# An R package to process thermal data derived from Landsat and MODIS images
+### DOI: 10.5281/zenodo.4010733
 
-## Authors:
+## *Authors:*
 
 ### \* *Richard Lemoine Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
 
 ### \* *Jean François Mas*, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
 
-## This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
+## *Description*
+
+### The LSTtools package provides tools for the analysis of thermal data derived from Landsat and MODIS satellites. It includes a number of pre-processing, processing and post-processing functions to conduct Urban Heat Island (UHI) assessments.
+
+### This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 
 ## Install and load the packages that will be employed
 
 ``` r
 #install.packages("devtools")
+#install.packages("raster")
 #install.packages("RcolorBrewer")
-#library(devtools)
-#install_github("RichardLemoine/LSTtools", force = TRUE)
+library(devtools)
+install_github("RichardLemoine/LSTtools")
+#> 
+#>          checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpuGoKxk\remotes239c75ba312\RichardLemoine-LSTtools-dc481b7/DESCRIPTION' ...  v  checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpuGoKxk\remotes239c75ba312\RichardLemoine-LSTtools-dc481b7/DESCRIPTION' (1.2s)
+#>       -  preparing 'LSTtools': (370ms)
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
+#>       -  checking for LF line-endings in source and make files and shell scripts (525ms)
+#>       -  checking for empty or unneeded directories
+#>       -  looking to see if a 'data/datalist' file should be added
+#>       -  building 'LSTtools_0.0.1.tar.gz'
+#>      
+#> 
 library(LSTtools)
 library(raster)
 library(RColorBrewer)
@@ -43,7 +59,7 @@ plot(veg, col=rev(colorRampPalette(c("green4", "yellow", "firebrick"))(255)), ma
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-## Convert the DN contained in a Landsat 8 TIR band (10) to TOA brightness temperature employing the radiance multiplicative and additive band rescaling factors and K1 and K2 constants, according to USGS (2019)
+## Convert the DN contained in the Landsat 8 TIR band (10) to TOA brightness temperature employing the radiance multiplicative and additive band rescaling factors and K1 and K2 constants, according to USGS (2019)
 
 ``` r
 br <- br_temp(tir, conv = TRUE, mult = 0.0003342, add = 0.1, k1 = 774.89, k2 = 1321.08)
@@ -56,7 +72,7 @@ plot(br, col=brewer.pal(9, 'YlOrRd'), main = "Brightness temperature (°C)")
 
 ``` r
 emis <- emissivity(veg, enonveg = 0.95, eveg = 0.99, pveg = FALSE)
-plot(emis[[1]], main = "Emissivity", col=colorRampPalette(c("white", "black"))(255))
+plot(emis, main = "Emissivity", col=colorRampPalette(c("white", "black"))(255))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
@@ -148,7 +164,7 @@ plot(v[[4]], main = "Viewing zenith angle (°)")
 
 ![](README_files/figure-gfm/unnamed-chunk-9-4.png)<!-- -->
 
-## Acknowledgements
+## *Acknowledgements*
 
 Richard Lemoine Rodriguez acknowledges the PhD scholarship and financial
 support provided by the Consejo Nacional de Ciencia y Tecnología
@@ -159,7 +175,7 @@ Código Abierto” of the Programa de Apoyo a Proyectos para la Innovación
 y Mejoramiento de la Enseñanza (PAPIME), number PE117519, from the
 National Autonomous University of Mexico.
 
-## References
+## *References*
 
 Benjamini, Y., and Hochberg, Y. (1995). Controlling the false discovery
 rate: a practical and powerful approach to multiple testing. Journal of

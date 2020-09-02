@@ -1,12 +1,9 @@
 Package: LSTtools
 Version: 0.0.1
 Type: Package
-Title: Tools to analyze Land Surface Temperature
-Description: Tools for the analysis of Land Surface Temperature 
- (LST) data derived from Landsat and MODIS satellites. 
- It provides a number of pre-processing, processing and 
- post-processing tools to conduct Urban Heat Island (UHI) 
- assessments.
+Title: LSTtools: An R package to process thermal data derived from Landsat and MODIS images
+Description: Tools for the analysis of thermal data derived from Landsat and MODIS satellites. 
+ It provides a number of pre-processing, processing and post-processing tools to conduct Urban Heat Island (UHI) assessments.
 License: GPL-3
 URL: https://github.com/RichardLemoine/LSTtools
 BugReports: https://github.com/RichardLemoine/LSTtools/issues
