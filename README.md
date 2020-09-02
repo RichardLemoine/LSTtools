@@ -24,16 +24,6 @@ MODIS images*
 #install.packages("RcolorBrewer")
 library(devtools)
 install_github("RichardLemoine/LSTtools")
-#> 
-#>          checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpuGoKxk\remotes239c75ba312\RichardLemoine-LSTtools-dc481b7/DESCRIPTION' ...  v  checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpuGoKxk\remotes239c75ba312\RichardLemoine-LSTtools-dc481b7/DESCRIPTION' (1.2s)
-#>       -  preparing 'LSTtools': (370ms)
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
-#>       -  checking for LF line-endings in source and make files and shell scripts (525ms)
-#>       -  checking for empty or unneeded directories
-#>       -  looking to see if a 'data/datalist' file should be added
-#>       -  building 'LSTtools_0.0.1.tar.gz'
-#>      
-#> 
 library(LSTtools)
 library(raster)
 library(RColorBrewer)
