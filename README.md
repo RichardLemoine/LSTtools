@@ -24,20 +24,6 @@ MODIS images*
 #install.packages("RcolorBrewer")
 library(devtools)
 install_github("RichardLemoine/LSTtools")
-#> rgeos (0.5-3 -> 0.5-5) [CRAN]
-#> package 'rgeos' successfully unpacked and MD5 sums checked
-#> 
-#> The downloaded binary packages are in
-#>  C:\Users\Rocket\AppData\Local\Temp\RtmpKYkwGW\downloaded_packages
-#>          checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpKYkwGW\remotesf381c952cdc\RichardLemoine-LSTtools-e55f87c/DESCRIPTION' ...  v  checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpKYkwGW\remotesf381c952cdc\RichardLemoine-LSTtools-e55f87c/DESCRIPTION' (1.4s)
-#>       -  preparing 'LSTtools': (545ms)
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
-#>       -  checking for LF line-endings in source and make files and shell scripts (724ms)
-#>       -  checking for empty or unneeded directories
-#>       -  looking to see if a 'data/datalist' file should be added
-#> -  building 'LSTtools_0.0.1.tar.gz'
-#>      
-#> 
 library(LSTtools)
 library(raster)
 library(RColorBrewer)
@@ -170,7 +156,7 @@ plot(v[[4]], main = "Viewing zenith angle (°)")
 
 ## *Acknowledgements*
 
-Richard Lemoine Rodriguez acknowledges the PhD scholarship and financial
+Richard Lemoine-Rodriguez acknowledges the PhD scholarship and financial
 support provided by the Consejo Nacional de Ciencia y Tecnología
 (CONACyT 308198/471027) and the Deutscher Akademischer Austauschdienst
 (DAAD 91680266). Both authors acknowledge the funding and support of the
