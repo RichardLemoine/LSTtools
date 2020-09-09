@@ -6,13 +6,13 @@ MODIS images*
 
 ## *Authors:*
 
-### \* *Richard Lemoine Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
+### \* *Richard Lemoine-Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
 
 ### \* *Jean François Mas*, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
 
 ## *Description*
 
-### The LSTtools package provides tools for the analysis of thermal data derived from Landsat and MODIS satellites. It includes a number of pre-processing, processing and post-processing functions to conduct Urban Heat Island (UHI) assessments.
+### The LSTtools package provides 21 tools for the analysis of thermal data derived from Landsat and MODIS satellites. It includes a number of pre-processing, processing and post-processing functions to conduct Urban Heat Island (UHI) assessments. Quality filtering, data uncompression, spectral indices focused on green and grey urban infrastructure, hot-cold spot analysis and spatial statistics are included.
 
 ### This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 
@@ -24,6 +24,20 @@ MODIS images*
 #install.packages("RcolorBrewer")
 library(devtools)
 install_github("RichardLemoine/LSTtools")
+#> rgeos (0.5-3 -> 0.5-5) [CRAN]
+#> package 'rgeos' successfully unpacked and MD5 sums checked
+#> 
+#> The downloaded binary packages are in
+#>  C:\Users\Rocket\AppData\Local\Temp\RtmpKYkwGW\downloaded_packages
+#>          checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpKYkwGW\remotesf381c952cdc\RichardLemoine-LSTtools-e55f87c/DESCRIPTION' ...  v  checking for file 'C:\Users\Rocket\AppData\Local\Temp\RtmpKYkwGW\remotesf381c952cdc\RichardLemoine-LSTtools-e55f87c/DESCRIPTION' (1.4s)
+#>       -  preparing 'LSTtools': (545ms)
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
+#>       -  checking for LF line-endings in source and make files and shell scripts (724ms)
+#>       -  checking for empty or unneeded directories
+#>       -  looking to see if a 'data/datalist' file should be added
+#> -  building 'LSTtools_0.0.1.tar.gz'
+#>      
+#> 
 library(LSTtools)
 library(raster)
 library(RColorBrewer)

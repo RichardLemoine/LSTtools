@@ -21,11 +21,11 @@ knitr::opts_chunk$set(
 ### DOI: 10.5281/zenodo.4010733
 
 ## *Authors:*
-### * *Richard Lemoine Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
+### * *Richard Lemoine-Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
 ### * *Jean François Mas*, Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México
 
 ## *Description*
-### The LSTtools package provides tools for the analysis of thermal data derived from Landsat and MODIS satellites. It includes a number of pre-processing, processing and post-processing functions to conduct Urban Heat Island (UHI) assessments.
+### The LSTtools package provides 21 tools for the analysis of thermal data derived from Landsat and MODIS satellites. It includes a number of pre-processing, processing and post-processing functions to conduct Urban Heat Island (UHI) assessments. Quality filtering, data uncompression, spectral indices focused on green and grey urban infrastructure, hot-cold spot analysis and spatial statistics are included.
 
 ### This vignette describes the main use of the LSTtools package, including: (1) the steps to compute Land Surface Temperature (LST) based on Landsat 8 atmospherically corrected bands and (2) filter the quality of LST and NDVI MODIS pixels.
 

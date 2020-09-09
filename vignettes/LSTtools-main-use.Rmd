@@ -1,7 +1,7 @@
 ---
 title: "LSTtools package main use"
 author:
-- Richard Lemoine Rodriguez^[Institute of Geography, Ruhr-Universität Bochum]
+- Richard Lemoine-Rodriguez^[Institute of Geography, Ruhr-Universität Bochum]
 - Jean François Mas^[Centro de Investigaciones en Geografía Ambiental, Universidad Nacional Autónoma de México]
 description: >
   Describe the steps to compute Land Surface Temperature (LST) from a Landsat 8 image and filter the quality of LST and NDVI MODIS pixels.
