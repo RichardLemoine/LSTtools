@@ -1,5 +1,5 @@
 Package: LSTtools
-Version: 0.0.1
+Version: 0.0.2
 Type: Package
 Title: LSTtools: An R package to process thermal data derived from Landsat and MODIS images
 Description: The LSTtools package provides 21 tools for the analysis of thermal data derived from Landsat and MODIS satellites. It includes a number of pre-processing, processing and post-processing functions to conduct Urban Heat Island (UHI) assessments. Quality filtering, data uncompression, spectral indices focused on green and grey urban infrastructure, hot-cold spot analysis and spatial statistics are included.
