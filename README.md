@@ -2,6 +2,8 @@
 MODIS images*
 ================
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4010732.svg)](https://doi.org/10.5281/zenodo.4010732)
+
 ## *Authors:*
 
 ### \* *Richard Lemoine-Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
