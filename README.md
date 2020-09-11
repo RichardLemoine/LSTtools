@@ -2,8 +2,6 @@
 MODIS images*
 ================
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4010733.svg)](https://doi.org/10.5281/zenodo.4010733)
-
 ## *Authors:*
 
 ### \* *Richard Lemoine-Rodriguez*, Institute of Geography, Ruhr-Universität Bochum
@@ -158,12 +156,15 @@ plot(v[[4]], main = "Viewing zenith angle (°)")
 
 Richard Lemoine-Rodriguez acknowledges the PhD scholarship and financial
 support provided by the Consejo Nacional de Ciencia y Tecnología
-(CONACyT 308198/471027) and the Deutscher Akademischer Austauschdienst
-(DAAD 91680266). Both authors acknowledge the funding and support of the
-project “Herramientas para la Enseñanza de la Geomática con programas de
-Código Abierto” of the Programa de Apoyo a Proyectos para la Innovación
-y Mejoramiento de la Enseñanza (PAPIME), number PE117519, from the
-National Autonomous University of Mexico.
+(CONACyT-México 308198/471027) and the Deutscher Akademischer
+Austauschdienst (DAAD-Deutschland 91680266), as well as the funding from
+the Fondo Nacional de Desarrollo Científico y Tecnológico
+(FONDECYT-Chile), number 11160643, of the Agencia Nacional de
+Investigación y Desarrollo. Both authors acknowledge the funding and
+support of the project “Herramientas para la Enseñanza de la Geomática
+con programas de Código Abierto” of the Programa de Apoyo a Proyectos
+para la Innovación y Mejoramiento de la Enseñanza (PAPIME), number
+PE117519, from the National Autonomous University of Mexico (UNAM).
 
 ## *References*
 
