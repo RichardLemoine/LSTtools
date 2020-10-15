@@ -90,9 +90,9 @@ spots <- getis(lst_e, dist = 65, p = 0.05)
 
 # Aggregate by cluster type and plot with proper colors
 r <- aggregate(spots, by = "cluster")
-r$color <- ifelse(r$cluster == "Hot spot", "red", #colors for plotting
+r$color <- ifelse(r$cluster == "Hot spot", "red", 
                   ifelse(r$cluster == "Cold spot", "blue", "grey"))
-{plot(r, col=r$color, border=NA, axes=F, main = "Hot-cold spots")  #border="gray50" #plot
+{plot(r, col=r$color, border=NA, axes=F, main = "Hot-cold spots")  
 legend("bottom", ncol = 3, fill=r$color, legend = c("Cold", "Hot", "No sig."))}
 ```
 
