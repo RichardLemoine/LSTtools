@@ -55,10 +55,10 @@ hdf_extract <- function(x, dest = getwd(), conv = TRUE) {
     name <- unlist(strsplit(basename(sds[i]), "\\:"))
     name <- gsub("[.]", "_", gsub( " ", "_", gsub("hdf", "", paste(name[3], name[5], sep = ""))))
     if(grepl("13Q1|13A1|13A2|13A3|13C1|13C2", name) & grepl("angle", name)){
-      r <- raster(readGDAL(sds[i], as.is = TRUE, silent = TRUE))
+      r <- suppressWarnings(raster(readGDAL(sds[i], as.is = TRUE, silent = TRUE)))
       r <- r * 0.01
     }else{
-      r <- raster(readGDAL(sds[i], as.is= FALSE, silent = TRUE))
+      r <- suppressWarnings(raster(readGDAL(sds[i], as.is= FALSE, silent = TRUE)))
       if (grepl("NDVI|EVI|red|NIR|blue|MIR", name)){
         r <- r / 1e8
       }else if (grepl("LST", name) & !grepl("Error", name)){
@@ -168,14 +168,14 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 25
     btb <- 26
     if (time == "day"){
-      LST <- raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[4], as.is = FALSE, silent = TRUE))
+      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[4], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
-      LST <-  raster(readGDAL(sds[5], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[8], as.is = FALSE, silent = TRUE))
+      LST <-  suppressWarnings(raster(readGDAL(sds[5], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[8], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }
   } else if(grepl("11C2|11C3", x))  {
@@ -183,14 +183,14 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 25
     btb <- 26
     if (time == "day"){
-      LST <- raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[4], as.is = FALSE, silent = TRUE))
+      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[4], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
-      LST <-  raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[7], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[9], as.is = FALSE, silent = TRUE))
+      LST <-  suppressWarnings(raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[7], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[9], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }
   } else if(grepl("MYD21A1D", x))  {
@@ -198,9 +198,9 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 17
     btb <- 18
     if (time == "day"){
-      LST <- raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE))
+      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
       stop('This product does not contain night LST measurement. Introduce product MXD21A1N to process this information')
@@ -212,9 +212,9 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     if (time == "day"){
       stop('This product does not contain day LST measurement. Introduce product MXD21A1D to process this information')
     }else if (time == "night"){
-      LST <-  raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE))
+      LST <-  suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }
   } else if(grepl("MYD21A2", x))  {
@@ -222,14 +222,14 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 25
     btb <- 26
     if (time == "day"){
-      LST <- raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE))
+      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
-      LST <-  raster(readGDAL(sds[5], as.is = FALSE, silent = TRUE))
-      qc <- raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE))
-      zenit_abs_angle <- raster(readGDAL(sds[7], as.is = FALSE, silent = TRUE))
+      LST <-  suppressWarnings(raster(readGDAL(sds[5], as.is = FALSE, silent = TRUE)))
+      qc <- suppressWarnings(raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE)))
+      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[7], as.is = FALSE, silent = TRUE)))
       names(zenit_abs_angle) <- "View.angle"
     }
   } else {
@@ -330,18 +330,18 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
     stop('VI is not one of NDVI or EVI')
   }
    if (vi == "NDVI") {
-    vind <- raster(readGDAL(sds[1], as.is = TRUE, silent = TRUE))
+    vind <- suppressWarnings(raster(readGDAL(sds[1], as.is = TRUE, silent = TRUE)))
   } else if(vi == "EVI") {
-    vind <- raster(readGDAL(sds[2], as.is = TRUE, silent = TRUE))
+    vind <- suppressWarnings(raster(readGDAL(sds[2], as.is = TRUE, silent = TRUE)))
   }
-  qa <- raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE))
+  qa <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
   if(!is.null(angle)){
-    view_angle <- raster(readGDAL(sds[8], as.is = TRUE, silent = TRUE))
+    view_angle <- suppressWarnings(raster(readGDAL(sds[8], as.is = TRUE, silent = TRUE)))
     view_angle <- view_angle * 0.01
     names(view_angle) <- "View.angle"
   }
   if(grepl("13A1|13A2|13Q1", x)) {
-    reliab <- raster(readGDAL(sds[12], as.is = FALSE, silent = TRUE))
+    reliab <- suppressWarnings(raster(readGDAL(sds[12], as.is = FALSE, silent = TRUE)))
     names(reliab) <- "Reliability"
     if (isTRUE(rel)) {
       mask_r <- reliab == 0
@@ -350,7 +350,7 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
       mask_r <- 1
     }}
   if (grepl("13A3", x))  {
-    reliab <- raster(readGDAL(sds[11], as.is = FALSE, silent = TRUE))
+    reliab <- suppressWarnings(raster(readGDAL(sds[11], as.is = FALSE, silent = TRUE)))
     names(reliab) <- "Reliability"
     if (isTRUE(rel)) {
       mask_r <- reliab == 0
@@ -360,7 +360,7 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
     }}
   if (grepl("13C1|13C2", x))  {
     angle <- NULL
-    reliab <- raster(readGDAL(sds[13], as.is = FALSE, silent = TRUE))
+    reliab <- suppressWarnings(raster(readGDAL(sds[13], as.is = FALSE, silent = TRUE)))
     names(reliab) <- "Reliability"
     reliab[reliab > 4] <- NA
     if (isTRUE(rel)) {

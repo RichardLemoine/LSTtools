@@ -4,7 +4,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(mod11a1)
+#' @usage data(system.file("data/MOD11A1.hdf", package="LSTtools"))
 #'
 #' @format A .hdf MODIS MOD11A1 file
 #'
@@ -16,10 +16,10 @@
 #' @source https://earthexplorer.usgs.gov/
 #'
 #' @examples
-#' data(mod11a1)
+#' data(system.file("data/MOD11A1.hdf", package="LSTtools"))
 #' # For LST day MOD11A1 product, filtering pixels with LST error <= 1 and view zenith angle <= 35
-#' r <- suppressWarnings(lst_filter(mod11a1, time = "day", flag  = 1, angle = 35, conv = TRUE))
+#' r <- lst_filter(MOD11A1, time = "day", flag  = 1, angle = 35, conv = TRUE)
 #' raster::plot(r[[1]], col=RColorBrewer::brewer.pal(9, 'YlOrRd'), main = "Filtered LST (°C)")
 #' raster::plot(r[[2]], main = "LST error (°C)")
 #' raster::plot(r[[3]], main = "viewing zenith angle (°)")
-"mod11a1"
+"MOD11A1"

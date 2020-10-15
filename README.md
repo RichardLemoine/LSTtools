@@ -102,10 +102,10 @@ legend("bottom", ncol = 3, fill=r$color, legend = c("Cold", "Hot", "No sig."))}
 
 ``` r
 # Load the MOD11A1 LST and Emissivity MODIS product
-data(mod11a1)
+data(system.file("data/MOD11A1.hdf", package="LSTtools"))
 
 # For LST day MOD11A1 product, filtering pixels with LST error <= 1 and view zenith angle <= 35
-r <- lst_filter(mod11a1, time = "day", flag  = 1, angle = 35, conv = TRUE)
+r <- lst_filter(MOD11A1, time = "day", flag  = 1, angle = 35, conv = TRUE)
 plot(r[[1]], col=brewer.pal(9, 'YlOrRd'), main = "Filtered LST (°C)")
 ```
 
@@ -127,10 +127,10 @@ plot(r[[3]], main = "Viewing zenith angle (°)")
 
 ``` r
 # Load the MOD13A1 vegetation index MODIS product
-data(mod13a1)
+data(system.file("data/MOD13A1.hdf", package="LSTtools"))
 
 # For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
-v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
+v <- veg_filter(MOD13A1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
 plot(v[[1]], col=rev(colorRampPalette(c("green4", "yellow", "firebrick"))(255)), main = "Filtered NDVI")
 ```
 
