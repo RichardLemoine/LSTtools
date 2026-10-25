@@ -25,19 +25,18 @@ knitr::opts_chunk$set(
 
 ## Install and load the packages that will be employed
 ```{r setup}
-#install.packages("devtools")
-#install.packages("RcolorBrewer")
-library(devtools)
-install_github("RichardLemoine/LSTtools", force = TRUE)
+#install.packages("RColorBrewer")
 library(LSTtools)
-library(raster)
+library(terra)
 library(RColorBrewer)
 ```
 
 ## Load and define Landsat 8 bands
 ```{r warning=FALSE}
-# Load the data
+# Load the data. land8 is stored as a terra PackedSpatRaster (the
+# serializable form of a SpatRaster) and must be unwrapped first.
 data(land8)
+land8 <- terra::unwrap(land8)
 # Define the Landsat 8 bands that will be employed
 red <- land8[[3]]
 nir <- land8[[4]]
@@ -72,8 +71,7 @@ plot(lst, col=brewer.pal(9, 'YlOrRd'), main = "LST (°C)")
 ```{r}
 
 # Subset extent to avoid time-consuming test
-e <- as(extent(716747.19, 719585.16, 2160408.248, 2163349.293), 'SpatialPolygons') 
-crs(e) <- crs(lst)
+e <- terra::ext(716747.19, 719585.16, 2160408.248, 2163349.293)
 lst_e <- crop(lst, e)
 
 # Compute Getis-Ord Gi* statistic
@@ -87,10 +85,10 @@ r$color <- ifelse(r$cluster == "Hot spot", "red",
 legend("bottom", ncol = 3, fill=r$color, legend = c("Cold", "Hot", "No sig."))}
 ```
 
-## Filter MODIS LST from a .hdf file according to Wan (2013) and Gawuc and Struzewska (2016) 
+## Filter MODIS LST from a .hdf file according to Wan (2013) and Gawuc and Struzewska (2016)
 ```{r}
-# Load the MOD11A1 LST and Emissivity MODIS product
-data(system.file("data/MOD11A1.hdf", package="LSTtools"))
+# Locate the MOD11A1 LST and Emissivity MODIS product bundled with the package
+mod11a1 <- system.file("extdata", "MOD11A1.hdf", package = "LSTtools")
 
 # For LST day MOD11A1 product, filtering pixels with LST error <= 1 and view zenith angle <= 35
 r <- lst_filter(mod11a1, time = "day", flag  = 1, angle = 35, conv = TRUE)
@@ -101,8 +99,8 @@ plot(r[[3]], main = "Viewing zenith angle (°)")
 
 ## Filter MODIS vegetation index from a .hdf file according to Didan et al. (2005)
 ```{r}
-# Load the MOD13A1 vegetation index MODIS product
-data(system.file("data/MOD13A1.hdf", package="LSTtools"))
+# Locate the MOD13A1 vegetation index MODIS product bundled with the package
+mod13a1 <- system.file("extdata", "MOD13A1.hdf", package = "LSTtools")
 
 # For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
 v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)

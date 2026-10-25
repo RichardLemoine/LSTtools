@@ -263,7 +263,7 @@ ibi <- function(x, y, r, g) {
 #' emiss <- emissivity(x, enonveg = 0.95, eveg = 0.99, pveg = TRUE)}
 #'
 #' @export
-#' @importFrom raster merge
+#' @importFrom terra merge
 #'
 #'
 emissivity <- function(x, nonveg = 0.2, veg = 0.5, enonveg = 0.95, eveg = 0.99, pveg= FALSE) {

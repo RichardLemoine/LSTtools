@@ -42,16 +42,20 @@
 #' uhiind <- uhi_stats(lstL8, landuse, id = 2)}
 #'
 #' @export
-#' @importFrom raster crop resample zonal
+#' @importFrom terra crop resample zonal
 #'
 #'
 uhi_stats <- function(x, y, id = NULL){
   x <- crop(x, y)
   x <- resample(x, y, "bilinear")
-  mins <- round(zonal(x, y, na.rm = TRUE, 'min'), 2)
-  means <- round(zonal(x, y, na.rm = TRUE, 'mean'), 2)
-  maxs <- round(zonal(x, y, na.rm = TRUE, 'max'), 2)
-  sds <- round(zonal(x, y, na.rm = TRUE, 'sd'), 2)
+  mins <- round(zonal(x, y, fun = 'min', na.rm = TRUE), 2)
+  names(mins)[2] <- "min"
+  means <- round(zonal(x, y, fun = 'mean', na.rm = TRUE), 2)
+  names(means)[2] <- "mean"
+  maxs <- round(zonal(x, y, fun = 'max', na.rm = TRUE), 2)
+  names(maxs)[2] <- "max"
+  sds <- round(zonal(x, y, fun = 'sd', na.rm = TRUE), 2)
+  names(sds)[2] <- "sd"
   df <- Reduce(merge, list(mins, means, maxs, sds))
   names(df)[1] <- "id"
   df$difference <- round(df[which(df$id == id), names(df) %in% "mean"] - df$mean, 2)
@@ -88,7 +92,7 @@ uhi_stats <- function(x, y, id = NULL){
 #' HIA.City <- hia(Llstl8, citypol)}
 #'
 #' @export
-#' @importFrom raster crop trim mask cellStats area
+#' @importFrom terra crop trim mask global cellSize values
 #'
 #'
 hia <- function(x, y = NULL){
@@ -96,12 +100,13 @@ hia <- function(x, y = NULL){
     x <- crop(x, y)
     x <- trim(mask(x, y))
   }
-  means <- round(cellStats(x, na.rm = TRUE, stat='mean'), 2)
-  sds <- round(cellStats(x, na.rm = TRUE, stat='sd'), 2)
+  means <- round(global(x, fun = 'mean', na.rm = TRUE)[1, 1], 2)
+  sds <- round(global(x, fun = 'sd', na.rm = TRUE)[1, 1], 2)
   tr <- means + sds
   x[x <= tr] <- NA
   x <- trim(x)
-  a <- suppressWarnings(sum(tapply(area(x), x[], sum)/10000))
+  cs <- cellSize(x, unit = "m", transform = FALSE)
+  a <- suppressWarnings(sum(tapply(as.vector(values(cs)), as.vector(values(x)), sum)/10000))
   f <- list(x, means, sds, tr, a)
   names(f) <- c("HIA layer", "Mean", "SD",  "HIA threshold", "HIA (ha)")
   return(f)
@@ -128,6 +133,12 @@ hia <- function(x, y = NULL){
 #' p values to reject the null hypothesis are 0.1, 0.05, 0.01,
 #' 0.001 and 0.0001.
 #'
+#' x must not contain NA cells: usdm::lisa()'s G* method for
+#' SpatRaster computes the global mean and variance without
+#' excluding missing values, so a single NA pixel invalidates the
+#' statistic for the entire raster. Crop/trim/fill x to a NA-free
+#' extent beforehand.
+#'
 #' @return A shapefile with the resulting z-scores, FDR values
 #' and label of cluster (i.e., hot spot, cold spot or no sig).
 #'
@@ -147,7 +158,7 @@ hia <- function(x, y = NULL){
 #'
 #' @export
 #' @importFrom usdm lisa
-#' @importFrom raster rasterToPolygons
+#' @importFrom terra as.polygons values
 #' @importFrom stats p.adjust pnorm
 #'
 #'
@@ -155,12 +166,20 @@ getis <- function(x, dist = NULL, p = 0.05){
   if (isFALSE(grepl("0.0001|0.001|0.01|0.05|0.1", p))){
     stop("P is not one of 0.1, 0.05, 0.01, 0.001 or 0.0001")
   }
+  if (anyNA(as.vector(values(x)))){
+    stop("x contains NA cells. usdm::lisa()'s G* method computes the global ",
+         "mean and variance without excluding NA (terra::global(x, 'sum') is ",
+         "called with na.rm = FALSE), so a single missing pixel invalidates ",
+         "the statistic for the whole raster. Crop/trim/fill x to a NA-free ",
+         "extent before calling getis().")
+  }
   g <- lisa(x, d1 = 0, d2 = dist, statistic= "G*")
-  pv <- round(2*pnorm(-abs(getValues(g))), 7)
-  pv <- as.data.frame(pv)
-  FDR <- round(p.adjust(pv[,1], "fdr"), 7)
+  gv <- as.vector(values(g))
+  pv <- round(2*pnorm(-abs(gv)), 7)
+  FDR <- round(p.adjust(pv, "fdr"), 7)
+  FDR <- FDR[!is.na(gv)]
   g <- round(g, 2)
-  shp <- rasterToPolygons(g, na.rm = T)
+  shp <- as.polygons(g, dissolve = FALSE, na.rm = TRUE)
   names(shp) <- "Z.scores"
   shp$FDR <- FDR
   shp$cluster <- ifelse(shp$Z.scores > 0 & shp$FDR < p, "Hot spot",

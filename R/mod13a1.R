@@ -1,12 +1,12 @@
 #' MODIS MOD13A1 product
 #'
-#' MODIS Vegetation Indices MOD13A1 product
+#' MODIS Vegetation Indices MOD13A1 product, bundled as a sample
+#' .hdf file (not a lazy-loaded R object).
 #'
-#' @docType data
+#' @name MOD13A1
 #'
-#' @usage data(system.file("data/MOD13A1.hdf", package="LSTtools"))
-#'
-#' @format A .hdf MODIS MOD13A1 file
+#' @format A .hdf MODIS MOD13A1 file, located with
+#' \code{system.file("extdata", "MOD13A1.hdf", package = "LSTtools")}
 #'
 #' @keywords MODIS
 #'
@@ -16,11 +16,11 @@
 #' @source https://earthexplorer.usgs.gov/
 #'
 #' @examples
-#' data(system.file("data/MOD13A1.hdf", package="LSTtools"))
+#' mod13a1 <- system.file("extdata", "MOD13A1.hdf", package = "LSTtools")
 #' # For NDVI MOD13Q1 product, filtering pixels with usefulness <= 2 and view zenith angle <= 35
-#' v <- veg_filter(MOD13A1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
-#' raster::plot(v[[1]], main = "Filtered NDVI")
-#' raster::plot(v[[2]], main = "Reliability")
-#' raster::plot(v[[3]], main = "Usefulness")
-#' raster::plot(v[[4]], main = "viewing zenith angle (°)")
-"MOD13A1"
+#' v <- veg_filter(mod13a1, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)
+#' terra::plot(v[[1]], main = "Filtered NDVI")
+#' terra::plot(v[[2]], main = "Reliability")
+#' terra::plot(v[[3]], main = "Usefulness")
+#' terra::plot(v[[4]], main = "viewing zenith angle (°)")
+NULL

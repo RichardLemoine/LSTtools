@@ -32,6 +32,12 @@ to potentially reduce the critical p-value thresholds in order
 to account for multiple testing and spatial dependency. Possible
 p values to reject the null hypothesis are 0.1, 0.05, 0.01,
 0.001 and 0.0001.
+
+x must not contain NA cells: usdm::lisa()'s G* method for
+SpatRaster computes the global mean and variance without
+excluding missing values, so a single NA pixel invalidates the
+statistic for the entire raster. Crop/trim/fill x to a NA-free
+extent beforehand.
 }
 \examples{
 \dontrun{# For an LST layer derived from Landsat 8

@@ -41,33 +41,35 @@
 #'
 #' @export
 #'
-#' @importFrom gdalUtils get_subdatasets
-#' @importFrom raster raster writeRaster
-#' @importFrom rgdal readGDAL
+#' @importFrom terra describe sds writeRaster
 #'
 #'
 hdf_extract <- function(x, dest = getwd(), conv = TRUE) {
-  sds <- get_subdatasets(x)
-  for (i in 1:length(sds)){
-    if (grepl("UNKNOWN", sds[i])){
+  info <- describe(x, sds = TRUE)
+  sds_scaled <- sds(x)
+  sds_raw <- sds(x, raw = TRUE)
+  file_id <- gsub("[.]", "_", sub("\\.hdf$", "", basename(x), ignore.case = TRUE))
+  for (i in seq_len(nrow(info))) {
+    layer <- info$var[i]
+    if (grepl("UNKNOWN", layer)) {
       next
     }
-    name <- unlist(strsplit(basename(sds[i]), "\\:"))
-    name <- gsub("[.]", "_", gsub( " ", "_", gsub("hdf", "", paste(name[3], name[5], sep = ""))))
-    if(grepl("13Q1|13A1|13A2|13A3|13C1|13C2", name) & grepl("angle", name)){
-      r <- suppressWarnings(raster(readGDAL(sds[i], as.is = TRUE, silent = TRUE)))
+    name <- paste0(file_id, gsub(" ", "_", gsub("[.]", "_", layer)))
+    if (grepl("13Q1|13A1|13A2|13A3|13C1|13C2", x) & grepl("angle", layer)) {
+      r <- sds_raw[i]
       r <- r * 0.01
-    }else{
-      r <- suppressWarnings(raster(readGDAL(sds[i], as.is= FALSE, silent = TRUE)))
-      if (grepl("NDVI|EVI|red|NIR|blue|MIR", name)){
+    } else {
+      r <- sds_scaled[i]
+      if (grepl("NDVI|EVI|red|NIR|blue|MIR", layer)) {
         r <- r / 1e8
-      }else if (grepl("LST", name) & !grepl("Error", name)){
-        if (isTRUE(conv)){
+      } else if (grepl("LST", layer) & !grepl("Error", layer)) {
+        if (isTRUE(conv)) {
           r <- r - 273.15
         }
-      }}
+      }
+    }
     dir.create(paste0(dest, "/", sub(".hdf", "", x)), showWarnings = FALSE)
-    writeRaster(r, paste(dest, "/", sub(".hdf", "", x), "/", name, ".tif", sep = ""), overwrite=TRUE, format="GTiff")
+    writeRaster(r, paste(dest, "/", sub(".hdf", "", x), "/", name, ".tif", sep = ""), overwrite = TRUE, filetype = "GTiff")
   }}
 
 
@@ -156,26 +158,24 @@ hdf_extract <- function(x, dest = getwd(), conv = TRUE) {
 #' lstfiltered  <- lst_filter(x, time = "day", flag  = 1, angle = 35, conv = TRUE)}
 #'
 #' @export
-#' @importFrom gdalUtils get_subdatasets
-#' @importFrom raster raster writeRaster values reclassify getValues
-#' @importFrom rgdal readGDAL
+#' @importFrom terra sds values classify
 #'
 #'
 lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
-  sds <- get_subdatasets(x)
+  ds <- sds(x)
   if(grepl("11A1|11A2|11B1|11B2|11B3|11C1", x)) {
     op <- "<="
     bta <- 25
     btb <- 26
     if (time == "day"){
-      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[4], as.is = FALSE, silent = TRUE)))
+      LST <- ds[1]
+      qc <- ds[2]
+      zenit_abs_angle <- ds[4]
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
-      LST <-  suppressWarnings(raster(readGDAL(sds[5], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[8], as.is = FALSE, silent = TRUE)))
+      LST <- ds[5]
+      qc <- ds[6]
+      zenit_abs_angle <- ds[8]
       names(zenit_abs_angle) <- "View.angle"
     }
   } else if(grepl("11C2|11C3", x))  {
@@ -183,14 +183,14 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 25
     btb <- 26
     if (time == "day"){
-      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[4], as.is = FALSE, silent = TRUE)))
+      LST <- ds[1]
+      qc <- ds[2]
+      zenit_abs_angle <- ds[4]
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
-      LST <-  suppressWarnings(raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[7], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[9], as.is = FALSE, silent = TRUE)))
+      LST <- ds[6]
+      qc <- ds[7]
+      zenit_abs_angle <- ds[9]
       names(zenit_abs_angle) <- "View.angle"
     }
   } else if(grepl("MYD21A1D", x))  {
@@ -198,9 +198,9 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 17
     btb <- 18
     if (time == "day"){
-      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
+      LST <- ds[1]
+      qc <- ds[2]
+      zenit_abs_angle <- ds[3]
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
       stop('This product does not contain night LST measurement. Introduce product MXD21A1N to process this information')
@@ -212,9 +212,9 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     if (time == "day"){
       stop('This product does not contain day LST measurement. Introduce product MXD21A1D to process this information')
     }else if (time == "night"){
-      LST <-  suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
+      LST <- ds[1]
+      qc <- ds[2]
+      zenit_abs_angle <- ds[3]
       names(zenit_abs_angle) <- "View.angle"
     }
   } else if(grepl("MYD21A2", x))  {
@@ -222,20 +222,20 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     bta <- 25
     btb <- 26
     if (time == "day"){
-      LST <- suppressWarnings(raster(readGDAL(sds[1], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[2], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
+      LST <- ds[1]
+      qc <- ds[2]
+      zenit_abs_angle <- ds[3]
       names(zenit_abs_angle) <- "View.angle"
     }else if (time == "night"){
-      LST <-  suppressWarnings(raster(readGDAL(sds[5], as.is = FALSE, silent = TRUE)))
-      qc <- suppressWarnings(raster(readGDAL(sds[6], as.is = FALSE, silent = TRUE)))
-      zenit_abs_angle <- suppressWarnings(raster(readGDAL(sds[7], as.is = FALSE, silent = TRUE)))
+      LST <- ds[5]
+      qc <- ds[6]
+      zenit_abs_angle <- ds[7]
       names(zenit_abs_angle) <- "View.angle"
     }
   } else {
     stop('Non-valid MODIS product')
   }
-  values_qc <- unique(values(qc))
+  values_qc <- unique(as.vector(values(qc)))
   m <- matrix(ncol=2,nrow=length(values_qc),NA)
   m[,1]<- values_qc
 
@@ -244,7 +244,7 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     n <- strtoi(bt, 2L)
     m[i,2] <- n
   }
-  flag_LST <- reclassify(qc, m)
+  flag_LST <- classify(qc, m)
   if (grepl("MYD21A1D|MYD21A1N|MYD21A2", x))  {
     names(flag_LST) <- "LST.accuracy"
   }else{
@@ -262,9 +262,9 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
     LST2 <- LST2 - 273.15
   }
   outputs <- list(LST2,flag_LST,zenit_abs_angle)
-  {if (all(is.na(getValues(outputs[[1]])))){
+  if (all(is.na(values(outputs[[1]])))){
     warning('Empty LST layer created due to non-achievement of desired quality. Check error and angle layers to verify values')
-  }}
+  }
   return(outputs)
 }
 
@@ -316,32 +316,31 @@ lst_filter <- function(x, time = "day", flag, angle, conv = TRUE){
 #' NDVIfiltered <- veg_filter(x, vi = "NDVI", rel = FALSE, usef = 2, angle = 35)}
 #'
 #' @export
-#' @importFrom gdalUtils get_subdatasets
-#' @importFrom raster raster writeRaster values reclassify getValues
-#' @importFrom rgdal readGDAL
+#' @importFrom terra sds values classify
 #'
 #'
 veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
-  sds <- get_subdatasets(x)
   if(!grepl("13A1|13A2|13Q1|13A3|13C1|13C2", x)){
     stop('Product is not one of MXD13Q1, MXD13A1, MXD13A2, MXD13A3, MXD13C1 or MXD13C2')
   }
   if(!grepl("NDVI|EVI", vi)){
     stop('VI is not one of NDVI or EVI')
   }
+  ds_raw <- sds(x, raw = TRUE)
+  ds <- sds(x)
    if (vi == "NDVI") {
-    vind <- suppressWarnings(raster(readGDAL(sds[1], as.is = TRUE, silent = TRUE)))
+    vind <- ds_raw[1]
   } else if(vi == "EVI") {
-    vind <- suppressWarnings(raster(readGDAL(sds[2], as.is = TRUE, silent = TRUE)))
+    vind <- ds_raw[2]
   }
-  qa <- suppressWarnings(raster(readGDAL(sds[3], as.is = FALSE, silent = TRUE)))
+  qa <- ds[3]
   if(!is.null(angle)){
-    view_angle <- suppressWarnings(raster(readGDAL(sds[8], as.is = TRUE, silent = TRUE)))
+    view_angle <- ds_raw[8]
     view_angle <- view_angle * 0.01
     names(view_angle) <- "View.angle"
   }
   if(grepl("13A1|13A2|13Q1", x)) {
-    reliab <- suppressWarnings(raster(readGDAL(sds[12], as.is = FALSE, silent = TRUE)))
+    reliab <- ds[12]
     names(reliab) <- "Reliability"
     if (isTRUE(rel)) {
       mask_r <- reliab == 0
@@ -350,7 +349,7 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
       mask_r <- 1
     }}
   if (grepl("13A3", x))  {
-    reliab <- suppressWarnings(raster(readGDAL(sds[11], as.is = FALSE, silent = TRUE)))
+    reliab <- ds[11]
     names(reliab) <- "Reliability"
     if (isTRUE(rel)) {
       mask_r <- reliab == 0
@@ -360,7 +359,7 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
     }}
   if (grepl("13C1|13C2", x))  {
     angle <- NULL
-    reliab <- suppressWarnings(raster(readGDAL(sds[13], as.is = FALSE, silent = TRUE)))
+    reliab <- ds[13]
     names(reliab) <- "Reliability"
     reliab[reliab > 4] <- NA
     if (isTRUE(rel)) {
@@ -369,7 +368,7 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
     } else {
       mask_r <- 1
     }}
-  values_q <- unique(values(qa))
+  values_q <- unique(as.vector(values(qa)))
   values_q <- values_q[!is.na(values_q)]
   m <- matrix(ncol=2,nrow=length(values_q),NA)
   m[,1]<- values_q
@@ -378,7 +377,7 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
     n <- strtoi(bt, 2L)
     m[i,2] <- n
   }
-  usefulness_map <- reclassify(qa, m)
+  usefulness_map <- classify(qa, m)
   names(usefulness_map) <- "Usefulness"
   usefulness_map[is.na(vind)] <- NA
   if (!isTRUE(rel)){
@@ -401,8 +400,8 @@ veg_filter <- function(x, vi, rel = TRUE, usef = NULL, angle = NULL){
     vind <- vind * 0.0001
     outputs <- list(vind, reliab, usefulness_map)
   }
-  {if (all(is.na(getValues(outputs[[1]])))){
+  if (all(is.na(values(outputs[[1]])))){
     warning('Empty vegetation index layer created due to non-achievement of desired quality. Check reliability, usefulness and angle layers to verify values')
-  }}
+  }
   return(outputs)
 }

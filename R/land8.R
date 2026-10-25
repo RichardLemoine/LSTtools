@@ -6,7 +6,11 @@
 #'
 #' @usage data(land8)
 #'
-#' @format A raster stack
+#' @format A terra \code{PackedSpatRaster} (the serializable form of a
+#' \code{SpatRaster}). \code{SpatRaster} objects hold an external
+#' pointer to data on disk/memory and cannot be stored directly in a
+#' package's \code{data/} folder, so \code{land8} must be unpacked with
+#' \code{\link[terra]{unwrap}} after loading.
 #'
 #' @keywords Landsat
 #'
@@ -18,6 +22,7 @@
 #'
 #' @examples
 #' data(land8)
+#' land8 <- terra::unwrap(land8)
 #' # Define the Landsat 8 bands that will be employed
 #' red <- land8[[3]]
 #' nir <- land8[[4]]
